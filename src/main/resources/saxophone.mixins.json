@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "net.chemthunder.saxophone.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PlayerEntityMixin",
+    "PlayerManagerMixin",
+    "ServerPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "client.PlayerEntityRendererMixin"
+  ]
+}

@@ -1,0 +1,24 @@
+package net.chemthunder.saxophone.data;
+
+import net.chemthunder.saxophone.data.provider.SaxoDynamicRegistryGen;
+import net.chemthunder.saxophone.data.provider.SaxoLangGen;
+import net.chemthunder.saxophone.data.provider.SaxoModelGen;
+import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
+
+public class SaxophoneDataGen implements DataGeneratorEntrypoint {
+	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+        FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+
+        pack.addProvider(SaxoDynamicRegistryGen::new);
+        pack.addProvider(SaxoLangGen::new);
+        pack.addProvider(SaxoModelGen::new);
+	}
+
+    public void buildRegistry(RegistryBuilder registryBuilder) {
+        registryBuilder.addRegistry(RegistryKeys.DAMAGE_TYPE, SaxoDamageSources::bootstrap);
+    }
+}

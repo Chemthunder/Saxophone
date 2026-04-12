@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "saxophone",
+  "version": "${version}",
+  "name": "Saxophone",
+  "description": "Love this dead girl walking!~",
+  "authors": [
+    "ONLY chemthudner hehe"
+  ],
+  "contributors": [
+    "silly stinky ew scarlet ivory"
+  ],
+  "license": "CC0-1.0",
+  "icon": "assets/saxophone/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.chemthunder.saxophone.impl.Saxophone"
+    ],
+    "fabric-datagen": [
+      "net.chemthunder.saxophone.data.SaxophoneDataGen"
+    ],
+    "cardinal-components": [
+      "net.chemthunder.saxophone.impl.cca.SaxoComponents"
+    ]
+  },
+  "mixins": [
+    "saxophone.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "custom": {
+    "cardinal-components": [
+      "saxophone:avarice"
+    ]
+  }
+}

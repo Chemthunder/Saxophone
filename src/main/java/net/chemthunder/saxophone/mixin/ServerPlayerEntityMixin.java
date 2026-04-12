@@ -1,0 +1,23 @@
+package net.chemthunder.saxophone.mixin;
+
+import net.chemthunder.saxophone.impl.util.ModUtils;
+import net.minecraft.client.model.ModelUtil;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin(ServerPlayerEntity.class)
+public abstract class ServerPlayerEntityMixin {
+
+    @Inject(method = "getPlayerListName", at = @At("TAIL"), cancellable = true)
+    private void replaceNameOnTabList(CallbackInfoReturnable<Text> cir) {
+        ServerPlayerEntity player = (ServerPlayerEntity)(Object)this;
+        if (ModUtils.isAvarice(player)) {
+            cir.setReturnValue(Text.literal("Avarice").withColor(0xff003c).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED));
+        }
+    }
+}
