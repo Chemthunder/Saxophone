@@ -31,7 +31,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LiberationItem extends SaxophoneItem implements CustomHitParticleItem, ModelVaryingItem {
-    public static final SweepParticleEffect[] EFFECTS = new SweepParticleEffect[]{new SweepParticleEffect(0xd70048, 0x0c0105)};
+    public static final SweepParticleEffect[] EFFECTS = new SweepParticleEffect[]{
+        new SweepParticleEffect(0xd70048, 0x0c0105)
+    };
 
     public LiberationItem(Settings settings) {
         super(settings);

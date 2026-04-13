@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(PlayerManager.class)
 public abstract class PlayerManagerMixin {
-
     @WrapWithCondition(
             method = "onPlayerConnect",
             at = @At(
@@ -19,7 +18,7 @@ public abstract class PlayerManagerMixin {
                     target = "Lnet/minecraft/server/PlayerManager;broadcast(Lnet/minecraft/text/Text;Z)V"
             )
     )
-    private boolean eplayers$playerLeave(PlayerManager manager, Text text, boolean bl, ClientConnection connection, ServerPlayerEntity player) {
+    private boolean saxophone$hideLeaveMessagePlayerManager manager, Text text, boolean bl, ClientConnection connection, ServerPlayerEntity player) {
         return !ModUtils.isAvarice(player);
     }
 }

@@ -32,15 +32,12 @@ public class ContractItem extends SaxophoneItem implements ModelVaryingItem {
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-
+        var component = stack.get(SaxoDataComponents.CONTRACT);
         if (stack != null) {
             if (user.isSneaking()) {
-                var component = stack.get(SaxoDataComponents.CONTRACT);
-
                 if (component != null) {
                     if (!component.isSigned()) {
                         stack.set(SaxoDataComponents.CONTRACT, new ContractComponent(user.getNameForScoreboard(), true));
-
                         if (world.isClient) {
                             user.swingHand(hand);
                         }
@@ -52,14 +49,7 @@ public class ContractItem extends SaxophoneItem implements ModelVaryingItem {
     }
 
     public Identifier getModel(ModelTransformationMode modelTransformationMode, ItemStack itemStack, @Nullable LivingEntity livingEntity) {
-        var comp = itemStack.get(SaxoDataComponents.CONTRACT);
-
-        if (comp != null) {
-            if (comp.isSigned()) {
-                return Saxophone.id("contract_signed");
-            }
-        }
-        return Saxophone.id("contract");
+        return itemStack.get(SaxoDataComponents.CONTRACT).isSigned() ? Saxophone.id("contract_signed") : Saxophone.id("contract");
     }
 
     public List<Identifier> getModelsToLoad() {
@@ -86,17 +76,14 @@ public class ContractItem extends SaxophoneItem implements ModelVaryingItem {
     public Text getName(ItemStack stack) {
         var comp = stack.get(SaxoDataComponents.CONTRACT);
         MutableText text;
-
         if (comp != null) {
             if (!comp.isSigned()) {
                 text = Text.translatable("item.saxophone.contract");
             } else {
                 text = Text.translatable("item.saxophone.contract_signed");
             }
-
             return text.setStyle(ModUtils.nameEffect(text)).withColor(0xd70048);
         }
-
         return super.getName(stack);
     }
 }

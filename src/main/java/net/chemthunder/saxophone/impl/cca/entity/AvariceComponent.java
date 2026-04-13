@@ -10,8 +10,8 @@ import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
 public class AvariceComponent implements AutoSyncedComponent {
     public static final ComponentKey<AvariceComponent> KEY = MiscUtils.getOrCreateKey(Saxophone.id("avarice"), AvariceComponent.class);
-
     private final PlayerEntity player;
+    
     private boolean avarice = false;
 
     public AvariceComponent(PlayerEntity player) {

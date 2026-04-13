@@ -9,7 +9,6 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 
 public class ModUtils {
-
     public static boolean isAvarice(PlayerEntity player) {
         return AvariceComponent.KEY.get(player).isAvarice();
     }

@@ -29,6 +29,19 @@ public class AvariceCommands implements CommandRegistrationCallback {
         );
 
         commandDispatcher.register(
+                CommandManager.literal("avarice::toggleInvisibility")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                AvariceComponent component = AvariceComponent.KEY.get(player);
+
+                                //
+                            }
+                            return 1;
+                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        );
+
+        commandDispatcher.register(
                 CommandManager.literal("avarice::giveContract")
                         .executes(context -> {
                             PlayerEntity player = context.getSource().getPlayer();
@@ -45,6 +58,38 @@ public class AvariceCommands implements CommandRegistrationCallback {
                             PlayerEntity player = context.getSource().getPlayer();
                             if (player != null) {
                                 player.giveItemStack(new ItemStack(SaxoItems.LIBERATION));
+                            }
+                            return 1;
+                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        );
+
+        commandDispatcher.register(
+                CommandManager.literal("avarice::giveDeificWarrant")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                player.giveItemStack(new ItemStack(SaxoItems.DEIFIC_WARRANT));
+                            }
+                            return 1;
+                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        );
+
+        commandDispatcher.register(
+                CommandManager.literal("avarice::giveForsakenCharter")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                player.giveItemStack(new ItemStack(SaxoItems.FORSAKEN_CHARTER));
+                            }
+                            return 1;
+                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        );
+        commandDispatcher.register(
+                CommandManager.literal("avarice::giveVirtusDei")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                player.giveItemStack(new ItemStack(SaxoItems.VIRTUS_DEI));
                             }
                             return 1;
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))

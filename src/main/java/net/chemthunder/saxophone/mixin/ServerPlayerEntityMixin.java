@@ -12,9 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
-
     @Inject(method = "getPlayerListName", at = @At("TAIL"), cancellable = true)
-    private void replaceNameOnTabList(CallbackInfoReturnable<Text> cir) {
+    private void saxophone$replaceNameOnTablist(CallbackInfoReturnable<Text> cir) {
         ServerPlayerEntity player = (ServerPlayerEntity)(Object)this;
         if (ModUtils.isAvarice(player)) {
             cir.setReturnValue(Text.literal("Avarice").withColor(0xff003c).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED));

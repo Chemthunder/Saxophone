@@ -21,7 +21,7 @@ public abstract class PlayerEntityRendererMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void getTexture(AbstractClientPlayerEntity player, CallbackInfoReturnable<Identifier> cir) {
+    private void saxophone$changeSkinTexture(AbstractClientPlayerEntity player, CallbackInfoReturnable<Identifier> cir) {
         if (ModUtils.isAvarice(player)) {
             cir.setReturnValue(Saxophone.id("textures/entity/avarice.png"));
         }
@@ -34,7 +34,7 @@ public abstract class PlayerEntityRendererMixin {
                     target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;getSkinTextures()Lnet/minecraft/client/util/SkinTextures;"
             )
     )
-    private SkinTextures herald$armSkin(AbstractClientPlayerEntity instance) {
+    private SkinTextures saxophone$keepArmSkinConcurrentToChangedSkin(AbstractClientPlayerEntity instance) {
         SkinTextures defaultTextures = instance.getSkinTextures();
         if (ModUtils.isAvarice(instance)) {
             return new SkinTextures(

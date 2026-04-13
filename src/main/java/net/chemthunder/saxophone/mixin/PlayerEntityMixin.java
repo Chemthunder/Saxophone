@@ -13,9 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin {
-
     @Inject(method = "shouldRenderName", at = @At("HEAD"), cancellable = true)
-    private void avarita$disableNameRendering(CallbackInfoReturnable<Boolean> cir) {
+    private void saxophone$disableNameRendering(CallbackInfoReturnable<Boolean> cir) {
         PlayerEntity player = (PlayerEntity) (Object) this;
         if (ModUtils.isAvarice(player)) {
             cir.setReturnValue(false);
@@ -23,7 +22,7 @@ public abstract class PlayerEntityMixin {
     }
 
     @ModifyReturnValue(method = "getDisplayName", at = @At("RETURN"))
-    private Text herald$maskName(Text original) {
+    private Text saxophone$changeUsername(Text original) {
         PlayerEntity player = (PlayerEntity) (Object) this;
         if (ModUtils.isAvarice(player)) {
             return Text.literal("Avarice").withColor(0xff003c).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED);
