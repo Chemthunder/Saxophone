@@ -35,7 +35,8 @@ public class AvariceCommands implements CommandRegistrationCallback {
                             if (player != null) {
                                 AvariceComponent component = AvariceComponent.KEY.get(player);
 
-                                //
+                                component.setInvisible(!component.isInvisible());
+                                context.getSource().sendFeedback(() -> Text.literal("Set Invisibility to " + component.isInvisible()), true);
                             }
                             return 1;
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))

@@ -1,7 +1,5 @@
 package net.chemthunder.saxophone.impl;
 
-import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
-import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import net.acoyt.acornlib.api.ALib;
 import net.chemthunder.saxophone.impl.command.AvariceCommands;
 import net.chemthunder.saxophone.impl.index.SaxoDataComponents;
@@ -38,8 +36,6 @@ public class Saxophone implements ModInitializer {
         SaxoDataComponents.init();
         SaxoItemGroups.init();
         registerEvents();
-
-		LOGGER.info("Hello Fabric world!");
 
         ALib.registerModData(MOD_ID, DATA);
 	}
