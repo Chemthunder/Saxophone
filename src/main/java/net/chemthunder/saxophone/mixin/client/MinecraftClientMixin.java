@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
-
     @ModifyReturnValue(method = "hasOutline", at = @At("RETURN"))
     private boolean saxo$glowsIfInForsakenCharterDistance(boolean original) {
         Entity entity = MinecraftClient.getInstance().getCameraEntity();

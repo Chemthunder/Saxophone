@@ -17,6 +17,13 @@ public class DatagenUtils {
             builder.add(key + ".player", player);
         }
 
+        public static void registerSingleMessageDamageType(FabricLanguageProvider.TranslationBuilder builder, RegistryKey<DamageType> registryKey, String normal) {
+            String key = "death.attack." + registryKey.getValue().getPath();
+            builder.add(key, normal);
+            builder.add(key + ".item", normal);
+            builder.add(key + ".player", normal);
+        }
+
         public static void registerPotion(FabricLanguageProvider.TranslationBuilder builder, Potion potion, String formattedName) {
             String key = Registries.POTION.getId(potion).getPath();
             builder.add("item.minecraft.tipped_arrow.effect." + key, "Arrow of " + formattedName);

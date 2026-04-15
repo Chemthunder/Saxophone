@@ -42,6 +42,20 @@ public class AvariceCommands implements CommandRegistrationCallback {
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))
         );
 
+        // for (Item item : SaxoItems.ITEMS.toRegister) {
+        //     commandDispatcher.register(
+        //         CommandManager.literal("avarice::give::" + item.getName())
+        //                 .executes(context -> {
+        //                     PlayerEntity player = context.getSource().getPlayer();
+        //                     if (player != null) {
+        //                         player.giveItemStack(new ItemStack(item));
+        //                     }
+        //                     return 1;
+        //                 }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        //     );
+        // }
+
+        // GIVE
         commandDispatcher.register(
                 CommandManager.literal("avarice::giveContract")
                         .executes(context -> {
@@ -52,7 +66,6 @@ public class AvariceCommands implements CommandRegistrationCallback {
                             return 1;
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))
         );
-
         commandDispatcher.register(
                 CommandManager.literal("avarice::giveLiberation")
                         .executes(context -> {
@@ -63,7 +76,6 @@ public class AvariceCommands implements CommandRegistrationCallback {
                             return 1;
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))
         );
-
         commandDispatcher.register(
                 CommandManager.literal("avarice::giveDeificWarrant")
                         .executes(context -> {
@@ -74,7 +86,6 @@ public class AvariceCommands implements CommandRegistrationCallback {
                             return 1;
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))
         );
-
         commandDispatcher.register(
                 CommandManager.literal("avarice::giveForsakenCharter")
                         .executes(context -> {
@@ -91,6 +102,36 @@ public class AvariceCommands implements CommandRegistrationCallback {
                             PlayerEntity player = context.getSource().getPlayer();
                             if (player != null) {
                                 player.giveItemStack(new ItemStack(SaxoItems.VIRTUS_DEI));
+                            }
+                            return 1;
+                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        );
+        commandDispatcher.register(
+                CommandManager.literal("avarice::giveRevenantEffigy")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                player.giveItemStack(new ItemStack(SaxoItems.REVENANT_EFFIGY));
+                            }
+                            return 1;
+                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        );
+        commandDispatcher.register(
+                CommandManager.literal("avarice::giveWrathOfTwilight")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                player.giveItemStack(new ItemStack(SaxoItems.WRATH_OF_TWILIGHT));
+                            }
+                            return 1;
+                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        );
+        commandDispatcher.register(
+                CommandManager.literal("avarice::giveAuthoritysObituary")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                player.giveItemStack(new ItemStack(SaxoItems.AUTHORITYS_OBITUARY));
                             }
                             return 1;
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))

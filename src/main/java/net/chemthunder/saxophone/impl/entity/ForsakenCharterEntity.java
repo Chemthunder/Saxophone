@@ -41,11 +41,6 @@ public class ForsakenCharterEntity extends Entity {
         }
     }
 
-    protected void readCustomDataFromNbt(NbtCompound nbt) {
-
-    }
-
-    protected void writeCustomDataToNbt(NbtCompound nbt) {
-
-    }
+    protected void readCustomDataFromNbt(NbtCompound nbt) {}
+    protected void writeCustomDataToNbt(NbtCompound nbt) {}
 }

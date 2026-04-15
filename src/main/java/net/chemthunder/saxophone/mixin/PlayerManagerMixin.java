@@ -16,6 +16,4 @@ public abstract class PlayerManagerMixin {
 //    private boolean saxophone$hideLeaveMessagePlayerManager(PlayerManager instance, Text message, boolean overlay) {
 //        return !ModUtils.isAvarice(player);
 //    }
-
-
 }

@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(WorldRenderer.class)
 public abstract class WorldRendererMixin {
-
     @WrapOperation(
             method = "renderSky",
             at = @At(

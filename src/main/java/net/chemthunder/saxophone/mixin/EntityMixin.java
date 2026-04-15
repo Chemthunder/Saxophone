@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
-
     @ModifyReturnValue(method = "getTeamColorValue", at = @At("RETURN"))
     private int saxo$customTeamColors(int original) {
         Entity entity = (Entity) (Object) this;
