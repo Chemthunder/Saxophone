@@ -3,6 +3,8 @@
   "package": "net.chemthunder.saxophone.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EntityMixin",
+    "LivingEntityMixin",
     "PlayerEntityMixin",
     "PlayerManagerMixin",
     "ServerPlayerEntityMixin"
@@ -14,7 +16,10 @@
     "requireAnnotations": true
   },
   "client": [
-    "client.LivingEntityMixin",
-    "client.PlayerEntityRendererMixin"
+    "client.BackgroundRendererMixin",
+    "client.LivingEntityRendererMixin",
+    "client.MinecraftClientMixin",
+    "client.PlayerEntityRendererMixin",
+    "client.WorldRendererMixin"
   ]
 }

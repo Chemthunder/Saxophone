@@ -2,9 +2,7 @@ package net.chemthunder.saxophone.impl;
 
 import net.acoyt.acornlib.api.ALib;
 import net.chemthunder.saxophone.impl.command.AvariceCommands;
-import net.chemthunder.saxophone.impl.index.SaxoDataComponents;
-import net.chemthunder.saxophone.impl.index.SaxoItemGroups;
-import net.chemthunder.saxophone.impl.index.SaxoItems;
+import net.chemthunder.saxophone.impl.index.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.entity.Entity;
@@ -15,6 +13,8 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Saxophone implements ModInitializer {
@@ -31,10 +31,15 @@ public class Saxophone implements ModInitializer {
             Text.literal("\"I looked down upon a feeble world, and breathed in excitement. The world is yours to take, and I reached for the stars.\"").formatted(Formatting.ITALIC)
     );
 
+    public static List<UUID> ALL_CONTRACTED_PLAYERS = new ArrayList<>();
+
 	public void onInitialize() {
         SaxoItems.init();
         SaxoDataComponents.init();
         SaxoItemGroups.init();
+        SaxoEntities.init();
+        SaxoBlocks.init();
+        SaxoParticles.init();
         registerEvents();
 
         ALib.registerModData(MOD_ID, DATA);

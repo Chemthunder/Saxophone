@@ -1,12 +1,10 @@
 package net.chemthunder.saxophone.mixin.client;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.util.SkinTextures;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

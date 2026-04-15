@@ -1,6 +1,8 @@
 package net.chemthunder.saxophone.data.provider;
 
 import net.chemthunder.saxophone.impl.index.SaxoItems;
+import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
+import net.chemthunder.saxophone.impl.util.DatagenUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -18,5 +20,17 @@ public class SaxoLangGen extends FabricLanguageProvider {
         translationBuilder.add("itemGroup.saxophone", "Saxophone");
 
         translationBuilder.add("item.saxophone.contract_signed", "Signed Contract");
+
+        DatagenUtils.Lang.registerDamageType(translationBuilder, SaxoDamageSources.AVARICES_WILL,
+                "%1$s was claimed by unknown forces",
+                "%1$s was claimed by unknown forces",
+                "%1$s was claimed by unknown forces"
+        );
+
+        DatagenUtils.Lang.registerDamageType(translationBuilder, SaxoDamageSources.LIBERATE,
+                "%1$s was liberated",
+                "%1$s was liberated by %2$s wielding %3$s",
+                "%1$s was liberated by %2$s"
+        );
     }
 }

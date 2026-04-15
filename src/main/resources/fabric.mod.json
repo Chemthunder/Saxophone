@@ -5,10 +5,12 @@
   "name": "Saxophone",
   "description": "Love this dead girl walking!~",
   "authors": [
-    "ONLY chemthudner hehe"
+    "iv0ryroses",
+    "chemThunder"
   ],
   "contributors": [
-    "silly stinky ew scarlet ivory"
+    "Hstar747",
+    "AcoYT"
   ],
   "license": "CC0-1.0",
   "icon": "assets/saxophone/icon.png",
@@ -16,6 +18,9 @@
   "entrypoints": {
     "main": [
       "net.chemthunder.saxophone.impl.Saxophone"
+    ],
+    "client": [
+      "net.chemthunder.saxophone.impl.SaxophoneClient"
     ],
     "fabric-datagen": [
       "net.chemthunder.saxophone.data.SaxophoneDataGen"
@@ -35,7 +40,10 @@
   },
   "custom": {
     "cardinal-components": [
-      "saxophone:avarice"
+      "saxophone:avarice",
+      "saxophone:forsaken_charter",
+
+      "saxophone:revenant_death"
     ]
   }
 }

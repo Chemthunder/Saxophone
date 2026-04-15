@@ -1,7 +1,5 @@
 package net.chemthunder.saxophone.impl.item;
 
-import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
-import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.chemthunder.saxophone.api.extendable.SaxophoneItem;
 import net.chemthunder.saxophone.impl.Saxophone;
@@ -33,14 +31,13 @@ public class ContractItem extends SaxophoneItem implements ModelVaryingItem {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
         var component = stack.get(SaxoDataComponents.CONTRACT);
-        if (stack != null) {
-            if (user.isSneaking()) {
-                if (component != null) {
-                    if (!component.isSigned()) {
-                        stack.set(SaxoDataComponents.CONTRACT, new ContractComponent(user.getNameForScoreboard(), true));
-                        if (world.isClient) {
-                            user.swingHand(hand);
-                        }
+        if (user.isSneaking()) {
+            if (component != null) {
+                if (!component.isSigned()) {
+                    stack.set(SaxoDataComponents.CONTRACT, new ContractComponent(user.getNameForScoreboard(), true));
+                    Saxophone.ALL_CONTRACTED_PLAYERS.add(user.getUuid());
+                    if (world.isClient) {
+                        user.swingHand(hand);
                     }
                 }
             }

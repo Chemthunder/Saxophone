@@ -1,5 +1,6 @@
 package net.chemthunder.saxophone.data.provider;
 
+import net.chemthunder.saxophone.impl.index.SaxoBlocks;
 import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -12,7 +13,9 @@ public class SaxoModelGen extends FabricModelProvider {
         super(output);
     }
 
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {}
+    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        blockStateModelGenerator.registerSimpleCubeAll(SaxoBlocks.CLOUDED_THOUGHT);
+    }
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(SaxoItems.LIBERATION, Models.GENERATED);
@@ -23,5 +26,6 @@ public class SaxoModelGen extends FabricModelProvider {
         itemModelGenerator.register(SaxoItems.FORSAKEN_CHARTER, Models.GENERATED);
         itemModelGenerator.register(SaxoItems.DEIFIC_WARRANT, Models.GENERATED);
         itemModelGenerator.register(SaxoItems.VIRTUS_DEI, Models.GENERATED);
+        itemModelGenerator.register(SaxoItems.WRATH_OF_TWILIGHT, Models.GENERATED);
     }
 }

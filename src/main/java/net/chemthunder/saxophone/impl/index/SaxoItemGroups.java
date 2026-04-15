@@ -2,7 +2,6 @@ package net.chemthunder.saxophone.impl.index;
 
 import net.acoyt.acornlib.api.registrants.ItemGroupRegistrant;
 import net.chemthunder.saxophone.impl.Saxophone;
-import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.minecraft.item.Item;

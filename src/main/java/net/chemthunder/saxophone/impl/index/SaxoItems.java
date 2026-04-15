@@ -13,6 +13,8 @@ public interface SaxoItems {
     Item DEIFIC_WARRANT = ITEMS.register("deific_warrant", DeificWarrantItem::new, new Item.Settings().maxCount(1));
     Item FORSAKEN_CHARTER = ITEMS.register("forsaken_charter", ForsakenCharterItem::new, new Item.Settings().maxCount(1));
     Item VIRTUS_DEI = ITEMS.register("virtus_dei", VirtusDeiItem::new, new Item.Settings().maxCount(1));
+    Item REVENANT_EFFIGY = ITEMS.register("revenant_effigy", RevenantEffigyItem::new, new Item.Settings().maxCount(1));
+    Item WRATH_OF_TWILIGHT = ITEMS.register("wrath_of_twilight", WrathOfTwilightItem::new, new Item.Settings().maxCount(1).attributeModifiers(WrathOfTwilightItem.createAttributeModifiers()));
 
     static void init() {}
 }

@@ -1,7 +1,6 @@
 package net.chemthunder.saxophone.mixin;
 
 import net.chemthunder.saxophone.impl.util.ModUtils;
-import net.minecraft.client.model.ModelUtil;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
