@@ -40,6 +40,7 @@ public class Saxophone implements ModInitializer {
         SaxoEntities.init();
         SaxoBlocks.init();
         SaxoParticles.init();
+        SaxoSoundEvents.init();
         registerEvents();
 
         ALib.registerModData(MOD_ID, DATA);

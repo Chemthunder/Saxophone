@@ -1,0 +1,15 @@
+{
+  "liberation_swing": {
+    "subtitle": "sounds.saxophone.liberation_swing",
+    "sounds": [
+      "saxophone:item/liberation_swing"
+    ]
+  },
+
+  "bell_toll": {
+    "subtitle": "sounds.saxophone.bell_toll",
+    "sounds": [
+      "saxophone:item/bell_toll"
+    ]
+  }
+}

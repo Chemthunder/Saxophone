@@ -15,6 +15,7 @@ public interface SaxoItems {
     Item VIRTUS_DEI = ITEMS.register("virtus_dei", VirtusDeiItem::new, new Item.Settings().maxCount(1));
     Item REVENANT_EFFIGY = ITEMS.register("revenant_effigy", RevenantEffigyItem::new, new Item.Settings().maxCount(1));
     Item WRATH_OF_TWILIGHT = ITEMS.register("wrath_of_twilight", WrathOfTwilightItem::new, new Item.Settings().maxCount(1).attributeModifiers(WrathOfTwilightItem.createAttributeModifiers()));
+    Item AUTHORITYS_OBITUARY = ITEMS.register("authoritys_obituary", AuthoritysObituaryItem::new, new Item.Settings().maxCount(1));
 
     static void init() {}
 }

@@ -4,6 +4,7 @@ import com.nitron.nitrogen.util.interfaces.ScreenShaker;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.client.particle.ShockwaveParticleEffect;
+import net.chemthunder.saxophone.impl.index.SaxoParticles;
 import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -46,7 +47,7 @@ public class RevenantDeathAnimationComponent implements AutoSyncedComponent, Com
 
     private void tickAnimations() {
         if (player.getWorld() instanceof ServerWorld serverWorld) {
-            serverWorld.spawnParticles(ParticleTypes.SOUL,
+            serverWorld.spawnParticles(SaxoParticles.AVARICE_SOUL,
                     player.getX(),
                     player.getY() + 1.0f,
                     player.getZ(),
@@ -84,6 +85,17 @@ public class RevenantDeathAnimationComponent implements AutoSyncedComponent, Com
                     player.getPos().x, player.getPos().y, player.getPos().z,
                     1,
                     0, 0, 0,
+                    0.4f
+            );
+
+            serverWorld.spawnParticles(SaxoParticles.AVARICE_GLIMMER,
+                    player.getX() + 0.5f,
+                    player.getY() + 0.5f,
+                    player.getZ() + 0.5f,
+                    25,
+                    0,
+                    0,
+                    0,
                     0.4f
             );
 

@@ -1,4 +1,11 @@
 {
+  "death.attack.avarices_will": "%1$s was claimed by unknown forces",
+  "death.attack.avarices_will.item": "%1$s was claimed by unknown forces",
+  "death.attack.avarices_will.player": "%1$s was claimed by unknown forces",
+  "death.attack.liberate": "%1$s was liberated",
+  "death.attack.liberate.item": "%1$s was liberated by %2$s wielding %3$s",
+  "death.attack.liberate.player": "%1$s was liberated by %2$s",
+  "item.saxophone.authoritys_obituary": "Authoritys Obituary",
   "item.saxophone.contract": "Contract",
   "item.saxophone.contract_signed": "Signed Contract",
   "item.saxophone.deific_warrant": "Deific Warrant",
@@ -7,5 +14,6 @@
   "item.saxophone.revenant_effigy": "Revenant Effigy",
   "item.saxophone.virtus_dei": "Virtus Dei",
   "item.saxophone.wrath_of_twilight": "Wrath Of Twilight",
-  "itemGroup.saxophone": "Saxophone"
+  "itemGroup.saxophone": "Saxophone",
+  "sounds.saxophone.liberation_swing": "Liberation Swings"
 }

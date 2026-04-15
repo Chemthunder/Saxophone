@@ -19,8 +19,13 @@ public class SaxoLangGen extends FabricLanguageProvider {
 
         translationBuilder.add("itemGroup.saxophone", "Saxophone");
 
+        // Item Misc
         translationBuilder.add("item.saxophone.contract_signed", "Signed Contract");
 
+        // Subtitles
+        translationBuilder.add("sounds.saxophone.liberation_swing", "Liberation Swings");
+
+        // Damage Sources
         DatagenUtils.Lang.registerDamageType(translationBuilder, SaxoDamageSources.AVARICES_WILL,
                 "%1$s was claimed by unknown forces",
                 "%1$s was claimed by unknown forces",

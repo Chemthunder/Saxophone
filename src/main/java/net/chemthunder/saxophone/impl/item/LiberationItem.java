@@ -1,12 +1,16 @@
 package net.chemthunder.saxophone.impl.item;
 
 import net.acoyt.acornlib.api.item.CustomHitParticleItem;
+import net.acoyt.acornlib.api.item.CustomHitSoundItem;
+import net.acoyt.acornlib.api.item.CustomKillSourceItem;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.acoyt.acornlib.api.util.ParticleUtils;
 import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
 import net.chemthunder.saxophone.api.extendable.SaxophoneItem;
 import net.chemthunder.saxophone.impl.Saxophone;
+import net.chemthunder.saxophone.impl.index.SaxoSoundEvents;
+import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
@@ -16,6 +20,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
@@ -28,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-public class LiberationItem extends SaxophoneItem implements CustomHitParticleItem, ModelVaryingItem {
+public class LiberationItem extends SaxophoneItem implements CustomHitParticleItem, CustomKillSourceItem, CustomHitSoundItem, ModelVaryingItem {
     public static final SweepParticleEffect[] EFFECTS = new SweepParticleEffect[]{
         new SweepParticleEffect(0xd70048, 0x0c0105)
     };
@@ -79,5 +84,13 @@ public class LiberationItem extends SaxophoneItem implements CustomHitParticleIt
 
     public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
         return !miner.isCreative();
+    }
+
+    public DamageSource getKillSource(LivingEntity livingEntity) {
+        return SaxoDamageSources.liberate(livingEntity);
+    }
+
+    public void playHitSound(PlayerEntity playerEntity, Entity entity) {
+        playerEntity.playSound(SaxoSoundEvents.LIBERATION_SWING, 1.0f, (float) (1.0f + playerEntity.getRandom().nextGaussian() / 10.0f));
     }
 }
