@@ -24,6 +24,7 @@ public class SaxoLangGen extends FabricLanguageProvider {
 
         // Subtitles
         translationBuilder.add("sounds.saxophone.liberation_swing", "Liberation Swings");
+        translationBuilder.add("sounds.saxophone.bell_toll", "Virtus Dei tolls");
 
         // Damage Sources
         DatagenUtils.Lang.registerDamageType(translationBuilder, SaxoDamageSources.AVARICES_WILL,
