@@ -44,6 +44,20 @@ public class AvariceCommands implements CommandRegistrationCallback {
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))
         );
 
+        commandDispatcher.register(
+                CommandManager.literal("avarice::toggleInvulnerability")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                AvariceComponent component = AvariceComponent.KEY.get(player);
+
+                                component.setInvincible(!component.isInvincible());
+                                context.getSource().sendFeedback(() -> Text.literal("Set Invulnerability to " + component.isInvincible()), true);
+                            }
+                            return 1;
+                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        );
+
         for (Item item : SaxoItems.ITEMS.toRegister) {
             commandDispatcher.register(
                     CommandManager.literal("avarice::give::" + MiscUtils.formatString(item.toString().replaceAll("saxophone:", "")).replaceAll(" ", ""))
