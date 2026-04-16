@@ -8,6 +8,7 @@ import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
 import net.chemthunder.saxophone.api.extendable.SaxophoneItem;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.util.ModUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
@@ -20,6 +21,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -72,5 +75,9 @@ public class WrathOfTwilightItem extends SaxophoneItem implements ModelVaryingIt
 
     public void spawnHitParticles(PlayerEntity playerEntity, Entity entity) {
         ParticleUtils.spawnSweepParticles(EFFECTS[playerEntity.getRandom().nextInt(EFFECTS.length)], playerEntity);
+    }
+
+    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
+        return !miner.isCreative();
     }
 }

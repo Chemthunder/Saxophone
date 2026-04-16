@@ -1,11 +1,12 @@
 package net.chemthunder.saxophone.mixin;
 
+import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.entity.InsistenceComponent;
 import net.chemthunder.saxophone.impl.cca.entity.RevenantDeathAnimationComponent;
-import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.chemthunder.saxophone.impl.item.AuthoritysObituaryItem;
-import net.chemthunder.saxophone.impl.util.ModUtils;
+import net.chemthunder.saxophone.impl.item.MartyrdomItem;
+import net.chemthunder.saxophone.impl.item.RevenantEffigyItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,8 +26,17 @@ public abstract class LivingEntityMixin {
             AvariceComponent avarice = AvariceComponent.KEY.get(player);
 
             if (!avarice.isAvarice()) {
-                if (ModUtils.hasItemInHands(player, SaxoItems.REVENANT_EFFIGY) && !RevenantDeathAnimationComponent.KEY.get(player).animationIsActive()) {
-                    cir.setReturnValue(true);
+                if (player.getOffHandStack().getItem() instanceof RevenantEffigyItem) {
+                    if (Saxophone.isScarlet(player)) {
+                        if (!RevenantDeathAnimationComponent.KEY.get(player).animationIsActive()) {
+                            RevenantDeathAnimationComponent.KEY.get(player).beginAnimation();
+                            player.setHealth(player.getMaxHealth());
+                            player.getOffHandStack().decrement(1);
+                            cir.setReturnValue(true);
+                        } else {
+                            cir.setReturnValue(true);
+                        }
+                    }
                 }
             }
         }
@@ -40,6 +50,18 @@ public abstract class LivingEntityMixin {
             if (player.getOffHandStack().getItem() instanceof AuthoritysObituaryItem i) {
                 cir.setReturnValue(true);
                 i.getKillEffect(player, living, player.getOffHandStack(), player.getWorld());
+            }
+        }
+    }
+
+    @Inject(method = "tryUseTotem", at = @At("HEAD"), cancellable = true)
+    private void saxo$martyrdom(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity living = (LivingEntity) (Object) this;
+
+        if (source.getAttacker() instanceof PlayerEntity player) {
+            if (player.getMainHandStack().getItem() instanceof MartyrdomItem i) {
+                cir.setReturnValue(true);
+                i.getPermakillEffect(player, living, player.getWorld());
             }
         }
     }

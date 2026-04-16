@@ -1,12 +1,14 @@
 package net.chemthunder.saxophone.impl.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
 import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -42,99 +44,17 @@ public class AvariceCommands implements CommandRegistrationCallback {
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))
         );
 
-        // for (Item item : SaxoItems.ITEMS.toRegister) {
-        //     commandDispatcher.register(
-        //         CommandManager.literal("avarice::give::" + item.getName())
-        //                 .executes(context -> {
-        //                     PlayerEntity player = context.getSource().getPlayer();
-        //                     if (player != null) {
-        //                         player.giveItemStack(new ItemStack(item));
-        //                     }
-        //                     return 1;
-        //                 }).requires(source -> Saxophone.isScarlet(source.getEntity()))
-        //     );
-        // }
-
-        // GIVE
-        commandDispatcher.register(
-                CommandManager.literal("avarice::giveContract")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                player.giveItemStack(new ItemStack(SaxoItems.CONTRACT));
-                            }
-                            return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
-        );
-        commandDispatcher.register(
-                CommandManager.literal("avarice::giveLiberation")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                player.giveItemStack(new ItemStack(SaxoItems.LIBERATION));
-                            }
-                            return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
-        );
-        commandDispatcher.register(
-                CommandManager.literal("avarice::giveDeificWarrant")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                player.giveItemStack(new ItemStack(SaxoItems.DEIFIC_WARRANT));
-                            }
-                            return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
-        );
-        commandDispatcher.register(
-                CommandManager.literal("avarice::giveForsakenCharter")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                player.giveItemStack(new ItemStack(SaxoItems.FORSAKEN_CHARTER));
-                            }
-                            return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
-        );
-        commandDispatcher.register(
-                CommandManager.literal("avarice::giveVirtusDei")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                player.giveItemStack(new ItemStack(SaxoItems.VIRTUS_DEI));
-                            }
-                            return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
-        );
-        commandDispatcher.register(
-                CommandManager.literal("avarice::giveRevenantEffigy")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                player.giveItemStack(new ItemStack(SaxoItems.REVENANT_EFFIGY));
-                            }
-                            return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
-        );
-        commandDispatcher.register(
-                CommandManager.literal("avarice::giveWrathOfTwilight")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                player.giveItemStack(new ItemStack(SaxoItems.WRATH_OF_TWILIGHT));
-                            }
-                            return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
-        );
-        commandDispatcher.register(
-                CommandManager.literal("avarice::giveAuthoritysObituary")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                player.giveItemStack(new ItemStack(SaxoItems.AUTHORITYS_OBITUARY));
-                            }
-                            return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
-        );
+        for (Item item : SaxoItems.ITEMS.toRegister) {
+            commandDispatcher.register(
+                    CommandManager.literal("avarice::give::" + MiscUtils.formatString(item.toString().replaceAll("saxophone:", "")).replaceAll(" ", ""))
+                            .executes(context -> {
+                                PlayerEntity player = context.getSource().getPlayer();
+                                if (player != null) {
+                                    player.giveItemStack(new ItemStack(item));
+                                }
+                                return 1;
+                            }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+            );
+        }
     }
 }

@@ -8,6 +8,7 @@ public interface SaxoSoundEvents {
     SoundEventRegistrant SOUND_EVENTS = new SoundEventRegistrant(Saxophone.MOD_ID);
 
     SoundEvent LIBERATION_SWING = SOUND_EVENTS.register("liberation_swing");
+    SoundEvent MARTYRDOM_SWING = SOUND_EVENTS.register("martyrdom_swing");
     SoundEvent BELL_TOLL = SOUND_EVENTS.register("bell_toll");
 
     static void init() {}

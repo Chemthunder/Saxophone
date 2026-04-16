@@ -1,4 +1,6 @@
 {
+  "block.saxophone.clouded_thought": "Clouded Thought",
+  "block.saxophone.covetous_monolith": "Covetous Monolith",
   "death.attack.avarices_will": "%1$s was claimed by unknown forces",
   "death.attack.avarices_will.item": "%1$s was claimed by unknown forces",
   "death.attack.avarices_will.player": "%1$s was claimed by unknown forces",
@@ -11,10 +13,13 @@
   "item.saxophone.deific_warrant": "Deific Warrant",
   "item.saxophone.forsaken_charter": "Forsaken Charter",
   "item.saxophone.liberation": "Liberation",
+  "item.saxophone.martyrdom": "Martyrdom",
   "item.saxophone.revenant_effigy": "Revenant Effigy",
   "item.saxophone.virtus_dei": "Virtus Dei",
   "item.saxophone.wrath_of_twilight": "Wrath Of Twilight",
   "itemGroup.saxophone": "Saxophone",
   "sounds.saxophone.bell_toll": "Virtus Dei tolls",
-  "sounds.saxophone.liberation_swing": "Liberation Swings"
+  "sounds.saxophone.liberation_swing": "Liberation Swings",
+  "tag.damage_type.saxophone.asphodel_bypass": "Asphodel Bypass",
+  "tag.damage_type.saxophone.bypasses_all": "Bypasses All"
 }

@@ -2,6 +2,7 @@ package net.chemthunder.saxophone.impl.index;
 
 import net.acoyt.acornlib.api.registrants.ItemRegistrant;
 import net.chemthunder.saxophone.impl.Saxophone;
+import net.chemthunder.saxophone.impl.block.item.CovetousMonolithBlockItem;
 import net.chemthunder.saxophone.impl.item.*;
 import net.minecraft.item.Item;
 
@@ -15,7 +16,10 @@ public interface SaxoItems {
     Item VIRTUS_DEI = ITEMS.register("virtus_dei", VirtusDeiItem::new, new Item.Settings().maxCount(1));
     Item REVENANT_EFFIGY = ITEMS.register("revenant_effigy", RevenantEffigyItem::new, new Item.Settings().maxCount(1));
     Item WRATH_OF_TWILIGHT = ITEMS.register("wrath_of_twilight", WrathOfTwilightItem::new, new Item.Settings().maxCount(1).attributeModifiers(WrathOfTwilightItem.createAttributeModifiers()));
+    Item MARTYRDOM = ITEMS.register("martyrdom", MartyrdomItem::new, new Item.Settings().maxCount(1).attributeModifiers(MartyrdomItem.createAttributeModifiers()));
     Item AUTHORITYS_OBITUARY = ITEMS.register("authoritys_obituary", AuthoritysObituaryItem::new, new Item.Settings().maxCount(1));
+
+    Item COVETOUS_MONOLITH_ITEM = ITEMS.register("covetous_monolith", CovetousMonolithBlockItem::new, new Item.Settings().maxCount(1));
 
     static void init() {}
 }

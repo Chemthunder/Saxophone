@@ -69,6 +69,17 @@ public class RevenantDeathAnimationComponent implements AutoSyncedComponent, Com
                     0.8f
             );
 
+            serverWorld.spawnParticles(SaxoParticles.AVARICE_LIGHT,
+                    player.getX(),
+                    player.getY() + 1.0f,
+                    player.getZ(),
+                    7,
+                    0,
+                    0,
+                    0,
+                    0.8f
+            );
+
             player.addVelocity(0, 0.10f, 0);
             player.velocityModified = true;
         }
@@ -108,6 +119,9 @@ public class RevenantDeathAnimationComponent implements AutoSyncedComponent, Com
             });
 
             player.damage(SaxoDamageSources.avaricesWill(player), player.getMaxHealth() * player.getMaxHealth());
+
+            AvariceComponent avariceComponent = AvariceComponent.KEY.get(player);
+            avariceComponent.setAvarice(true);
         }
     }
 

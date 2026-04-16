@@ -1,7 +1,9 @@
-package net.chemthunder.saxophone.data.provider;
+package net.chemthunder.saxophone.data.provider.assets;
 
+import net.chemthunder.saxophone.impl.index.SaxoBlocks;
 import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
+import net.chemthunder.saxophone.impl.index.tag.SaxoDamageTypeTags;
 import net.chemthunder.saxophone.impl.util.DatagenUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -16,6 +18,8 @@ public class SaxoLangGen extends FabricLanguageProvider {
 
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         SaxoItems.ITEMS.registerLang(wrapperLookup, translationBuilder);
+        SaxoDamageTypeTags.registerLang(translationBuilder);
+        SaxoBlocks.BLOCKS.registerLang(wrapperLookup, translationBuilder);
 
         translationBuilder.add("itemGroup.saxophone", "Saxophone");
 

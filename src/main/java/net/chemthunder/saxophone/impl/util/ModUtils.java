@@ -16,6 +16,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 
@@ -49,8 +50,10 @@ public class ModUtils {
     }
 
     public static void teleportToAsphodel(LivingEntity living) {
+        Vec3d pos = new Vec3d(living.getX(), -319, living.getZ());
+
         if (living.getServer() != null) {
-            living.teleportTo(new TeleportTarget(getAsphodel(living.getServer()), living, null));
+            living.teleportTo(new TeleportTarget(getAsphodel(living.getServer()), pos, living.getVelocity(), living.getYaw(), living.getPitch(), TeleportTarget.NO_OP));
         }
     }
 

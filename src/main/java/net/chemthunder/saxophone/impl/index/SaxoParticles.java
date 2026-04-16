@@ -17,6 +17,7 @@ public interface SaxoParticles {
 
     SimpleParticleType AVARICE_SOUL = create("avarice_soul", FabricParticleTypes.simple());
     SimpleParticleType AVARICE_GLIMMER = create("avarice_glimmer", FabricParticleTypes.simple());
+    SimpleParticleType AVARICE_LIGHT = create("avarice_light", FabricParticleTypes.simple());
 
     private static <T extends ParticleType<?>> T create(String name, T particle) {
         return Registry.register(Registries.PARTICLE_TYPE, Saxophone.id(name), particle);
@@ -28,5 +29,6 @@ public interface SaxoParticles {
         ParticleFactoryRegistry.getInstance().register(SHOCKWAVE, ShockwaveParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(AVARICE_SOUL, SoulParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(AVARICE_GLIMMER, EndRodParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(AVARICE_LIGHT, EndRodParticle.Factory::new);
     }
 }

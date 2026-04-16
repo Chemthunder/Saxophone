@@ -5,6 +5,12 @@
       "saxophone:item/liberation_swing"
     ]
   },
+  "martyrdom_swing": {
+    "subtitle": "sounds.saxophone.martyrdom_swing",
+    "sounds": [
+      "saxophone:item/martyrdom_swing"
+    ]
+  },
 
   "bell_toll": {
     "subtitle": "sounds.saxophone.bell_toll",

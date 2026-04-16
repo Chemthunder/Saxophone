@@ -1,8 +1,11 @@
 package net.chemthunder.saxophone.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.chemthunder.saxophone.impl.index.tag.SaxoDamageTypeTags;
 import net.chemthunder.saxophone.impl.util.ModUtils;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,5 +30,16 @@ public abstract class PlayerEntityMixin {
             return Text.literal("Avarice").withColor(0xff003c).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED);
         }
         return original;
+    }
+
+    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
+    private void saxophone$negateDamageInAsphodel(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        PlayerEntity player = (PlayerEntity) (Object) this;
+
+        if (ModUtils.isInAsphodel(player)) {
+            if (!source.isIn(SaxoDamageTypeTags.ASPHODEL_BYPASS)) {
+                cir.setReturnValue(false);
+            }
+        }
     }
 }

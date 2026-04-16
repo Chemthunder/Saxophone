@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "saxophone:block/monolith_top",
+    "bottom": "saxophone:block/monolith_bottom",
+    "side": "saxophone:block/monolith_side"
+  }
+}

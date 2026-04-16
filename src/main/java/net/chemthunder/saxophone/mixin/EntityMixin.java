@@ -1,6 +1,7 @@
 package net.chemthunder.saxophone.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.entity.ForsakenCharterComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -14,9 +15,9 @@ public abstract class EntityMixin {
         Entity entity = (Entity) (Object) this;
 
         if (entity instanceof LivingEntity living) {
-            ForsakenCharterComponent component = ForsakenCharterComponent.KEY.get(living);
+            AvariceComponent component = AvariceComponent.KEY.get(living);
 
-            if (component.isInBox()) {
+            if (component.isAvarice()) {
                 return 0xFFd70048;
             }
         }
