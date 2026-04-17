@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class AbstractInventoryScreenMixin {
 
     @WrapOperation(method = "getStatusEffectDescription", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/effect/StatusEffect;getName()Lnet/minecraft/text/Text;"))
-    private Text saxo$madness(StatusEffect instance, Operation<Text> original) {
+    private Text saxophone$statusEffectNames(StatusEffect instance, Operation<Text> original) {
         PlayerEntity player = MinecraftClient.getInstance().player;
 
         if (player != null) {

@@ -13,9 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BackgroundRenderer.class)
 public abstract class BackgroundRendererMixin {
-
     @Inject(method = "applyFog", at = @At("HEAD"), cancellable = true)
-    private static void saxo$customFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci) {
+    private static void saxophone$customFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci) {
         MinecraftClient client = MinecraftClient.getInstance();
 
         if (ModUtils.isInAsphodel(client.player)) {

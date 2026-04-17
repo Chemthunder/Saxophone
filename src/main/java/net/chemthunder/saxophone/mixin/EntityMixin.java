@@ -2,7 +2,6 @@ package net.chemthunder.saxophone.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
-import net.chemthunder.saxophone.impl.cca.entity.ForsakenCharterComponent;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -15,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Entity.class)
 public abstract class EntityMixin {
     @ModifyReturnValue(method = "getTeamColorValue", at = @At("RETURN"))
-    private int saxo$customTeamColors(int original) {
+    private int saxophone$customTeamColors(int original) {
         Entity entity = (Entity) (Object) this;
 
         if (entity instanceof LivingEntity living) {
@@ -29,7 +28,7 @@ public abstract class EntityMixin {
     }
 
     @Inject(method = "spawnSprintingParticles", at = @At(value = "HEAD"), cancellable = true)
-    private void saxo$disableSprintParticles(CallbackInfo ci) {
+    private void saxophone$disableSprintParticles(CallbackInfo ci) {
         Entity entity = (Entity) (Object) this;
 
         if (entity instanceof PlayerEntity player) {

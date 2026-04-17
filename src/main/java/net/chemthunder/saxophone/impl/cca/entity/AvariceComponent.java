@@ -28,9 +28,9 @@ public class AvariceComponent implements AutoSyncedComponent, CommonTickingCompo
 
 
     public void tick() {
-        if (this.avarice) {
-            player.setGlowing(this.invincible);
-        }
+        // if (this.avarice) {
+        //     player.setGlowing(this.invincible);
+        // }
     }
 
     public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {

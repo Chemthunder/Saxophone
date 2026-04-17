@@ -19,7 +19,6 @@
     "client.AbstractInventoryScreenMixin",
     "client.BackgroundRendererMixin",
     "client.LivingEntityRendererMixin",
-    "client.MinecraftClientMixin",
     "client.PlayerEntityRendererMixin",
     "client.WorldRendererMixin"
   ]

@@ -42,15 +42,12 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
     }
 
     @ModifyReturnValue(method = "getShadowRadius(Lnet/minecraft/entity/LivingEntity;)F", at = @At("RETURN"))
-    private float deleteShadow(float original) {
+    private float saxophone$deleteShadow(float original) {
         Entity en = MinecraftClient.getInstance().getCameraEntity();
 
         if (en instanceof PlayerEntity player) {
-            if (AvariceComponent.KEY.get(player).isInvisible()) {
-                return 0f;
-            }
+            return AvariceComponent.KEY.get(player).isInvisible() ? 0f : original;
         }
-
         return original;
     }
 }

@@ -20,7 +20,7 @@ public abstract class WorldRendererMixin {
                     ordinal = 0
             )
     )
-    private void saxo$asphodelSun(int texture, Identifier id, Operation<Void> original) {
+    private void saxophone$asphodelSun(int texture, Identifier id, Operation<Void> original) {
         original.call(texture, ModUtils.isInAsphodel(MinecraftClient.getInstance().player) ? Saxophone.id("textures/environment/asphodel_sun.png") : id);
     }
 }

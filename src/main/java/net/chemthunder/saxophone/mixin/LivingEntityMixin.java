@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
     @Inject(method = "tryUseTotem", at = @At("HEAD"), cancellable = true)
-    private void saxo$revenantEffigy(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+    private void saxophone$revenantEffigy(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity living = (LivingEntity) (Object) this;
 
         if (living instanceof PlayerEntity player) {
@@ -43,7 +43,7 @@ public abstract class LivingEntityMixin {
     }
 
     @Inject(method = "tryUseTotem", at = @At("HEAD"), cancellable = true)
-    private void saxo$authorityObituary(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+    private void saxophone$authorityObituary(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity living = (LivingEntity) (Object) this;
 
         if (source.getAttacker() instanceof PlayerEntity player) {
@@ -55,7 +55,7 @@ public abstract class LivingEntityMixin {
     }
 
     @Inject(method = "tryUseTotem", at = @At("HEAD"), cancellable = true)
-    private void saxo$martyrdom(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+    private void saxophone$martyrdom(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity living = (LivingEntity) (Object) this;
 
         if (source.getAttacker() instanceof PlayerEntity player) {
@@ -67,7 +67,7 @@ public abstract class LivingEntityMixin {
     }
 
     @Inject(method = "applyMovementInput", at = @At("HEAD"), cancellable = true)
-    private void saxo$cancelMovement(Vec3d movementInput, float slipperiness, CallbackInfoReturnable<Vec3d> cir) {
+    private void saxophone$cancelMovement(Vec3d movementInput, float slipperiness, CallbackInfoReturnable<Vec3d> cir) {
         if ((Object) this instanceof LivingEntity player) {
             if (InsistenceComponent.KEY.get(player).getActiveTicks() > 0) {
                 cir.setReturnValue(Vec3d.ZERO);
@@ -76,7 +76,7 @@ public abstract class LivingEntityMixin {
     }
 
     @Inject(method = "applyFluidMovingSpeed", at = @At("HEAD"), cancellable = true)
-    private void saxo$cancelFluidMovement(double gravity, boolean falling, Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
+    private void saxophone$cancelFluidMovement(double gravity, boolean falling, Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
         if ((Object) this instanceof LivingEntity player) {
             if (InsistenceComponent.KEY.get(player).getActiveTicks() > 0) {
                 cir.setReturnValue(Vec3d.ZERO);
