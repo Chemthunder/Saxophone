@@ -15,6 +15,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
@@ -37,6 +38,10 @@ public class ModUtils {
 
     public static List<Entity> getEntitiesAroundEntity(Entity living, int expansion) {
         return living.getWorld().getEntitiesByClass(Entity.class, new Box(living.getBlockPos()).expand(expansion), entity -> true);
+    }
+
+    public static List<Entity> getEntitiesAroundPos(BlockPos pos, World world, int expansion) {
+        return world.getEntitiesByClass(Entity.class, new Box(pos).expand(expansion), entity -> true);
     }
 
     public static RegistryKey<World> asphodelKey = RegistryKey.of(RegistryKeys.WORLD, Saxophone.id("asphodel"));

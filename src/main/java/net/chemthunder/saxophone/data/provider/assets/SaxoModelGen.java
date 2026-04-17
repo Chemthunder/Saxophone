@@ -16,7 +16,6 @@ public class SaxoModelGen extends FabricModelProvider {
 
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerSimpleCubeAll(SaxoBlocks.CLOUDED_THOUGHT);
-        blockStateModelGenerator.registerItemModel(SaxoBlocks.COVETOUS_MONOLITH);
         blockStateModelGenerator.registerSimpleState(SaxoBlocks.COVETOUS_MONOLITH);
     }
 

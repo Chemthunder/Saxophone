@@ -6,6 +6,7 @@ import net.chemthunder.saxophone.impl.index.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -42,6 +43,7 @@ public class Saxophone implements ModInitializer {
         SaxoParticles.init();
         SaxoSoundEvents.init();
         SaxoBlockEntities.init();
+        SaxoStatusEffects.init();
         registerEvents();
 
         ALib.registerModData(MOD_ID, DATA);
@@ -52,7 +54,7 @@ public class Saxophone implements ModInitializer {
     }
 
     public static boolean isScarlet(Entity entity) {
-        return entity != null && entity.getUuid().equals(UUID.fromString("c38f83cf-2723-497a-9327-f5937fb2fc08"));
+        return entity != null && (entity.getUuid().equals(UUID.fromString("c38f83cf-2723-497a-9327-f5937fb2fc08"))) || (entity instanceof PlayerEntity player && player.isCreative());
     }
 
     private static void registerEvents() {

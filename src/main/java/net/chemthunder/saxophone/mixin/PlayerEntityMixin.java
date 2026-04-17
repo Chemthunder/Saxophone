@@ -4,12 +4,14 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
 import net.chemthunder.saxophone.impl.index.tag.SaxoDamageTypeTags;
 import net.chemthunder.saxophone.impl.util.ModUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -57,6 +59,15 @@ public abstract class PlayerEntityMixin {
 
     @Inject(method = "attack", at = @At(value = "HEAD"), cancellable = true)
     private void saxophone$negateAttacksWhilstInvincible(Entity target, CallbackInfo ci) {
+        PlayerEntity player = (PlayerEntity) (Object) this;
+
+        if (AvariceComponent.KEY.get(player).isInvincible()) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "playStepSound", at = @At("HEAD"), cancellable = true)
+    private void saxophone$removeStepSounds(BlockPos pos, BlockState state, CallbackInfo ci) {
         PlayerEntity player = (PlayerEntity) (Object) this;
 
         if (AvariceComponent.KEY.get(player).isInvincible()) {

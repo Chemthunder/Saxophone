@@ -1,6 +1,8 @@
 package net.chemthunder.saxophone.mixin.client;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -8,6 +10,7 @@ import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,5 +39,18 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
                 ci.cancel();
             }
         }
+    }
+
+    @ModifyReturnValue(method = "getShadowRadius(Lnet/minecraft/entity/LivingEntity;)F", at = @At("RETURN"))
+    private float deleteShadow(float original) {
+        Entity en = MinecraftClient.getInstance().getCameraEntity();
+
+        if (en instanceof PlayerEntity player) {
+            if (AvariceComponent.KEY.get(player).isInvisible()) {
+                return 0f;
+            }
+        }
+
+        return original;
     }
 }
