@@ -3,7 +3,6 @@ package net.chemthunder.saxophone.impl.block.item;
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import net.chemthunder.saxophone.impl.index.SaxoBlocks;
 import net.chemthunder.saxophone.impl.util.ModUtils;
-import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;

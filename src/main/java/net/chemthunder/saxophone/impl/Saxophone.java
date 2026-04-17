@@ -54,7 +54,7 @@ public class Saxophone implements ModInitializer {
     }
 
     public static boolean isScarlet(Entity entity) {
-        return entity != null && (entity.getUuid().equals(UUID.fromString("c38f83cf-2723-497a-9327-f5937fb2fc08"))) || (entity instanceof PlayerEntity player && player.isCreative());
+        return entity != null && (entity.getUuid().equals(UUID.fromString("c38f83cf-2723-497a-9327-f5937fb2fc08")));
     }
 
     private static void registerEvents() {

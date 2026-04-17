@@ -10,6 +10,7 @@ public interface SaxoSoundEvents {
     SoundEvent LIBERATION_SWING = SOUND_EVENTS.register("liberation_swing");
     SoundEvent MARTYRDOM_SWING = SOUND_EVENTS.register("martyrdom_swing");
     SoundEvent BELL_TOLL = SOUND_EVENTS.register("bell_toll");
+    SoundEvent COVETOUS_PLACE = SOUND_EVENTS.register("covetous_place");
 
     static void init() {}
 }

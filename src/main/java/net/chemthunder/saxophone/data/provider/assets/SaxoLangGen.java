@@ -1,6 +1,5 @@
 package net.chemthunder.saxophone.data.provider.assets;
 
-import net.chemthunder.saxophone.impl.index.SaxoBlocks;
 import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.chemthunder.saxophone.impl.index.SaxoStatusEffects;
 import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
@@ -31,6 +30,7 @@ public class SaxoLangGen extends FabricLanguageProvider {
         // Subtitles
         translationBuilder.add("sounds.saxophone.liberation_swing", "Liberation Swings");
         translationBuilder.add("sounds.saxophone.bell_toll", "Virtus Dei tolls");
+        translationBuilder.add("sounds.saxophone.covetous_monolith", "Covetous Monolith is placed");
 
         // Damage Sources
         DatagenUtils.Lang.registerDamageType(translationBuilder, SaxoDamageSources.AVARICES_WILL,

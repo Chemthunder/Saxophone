@@ -8,7 +8,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
@@ -61,7 +60,7 @@ public abstract class PlayerEntityMixin {
     private void saxophone$negateAttacksWhilstInvincible(Entity target, CallbackInfo ci) {
         PlayerEntity player = (PlayerEntity) (Object) this;
 
-        if (AvariceComponent.KEY.get(player).isInvincible()) {
+        if (AvariceComponent.KEY.get(player).isInvincible() && target instanceof PlayerEntity) {
             ci.cancel();
         }
     }

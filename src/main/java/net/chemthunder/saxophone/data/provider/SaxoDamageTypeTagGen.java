@@ -3,7 +3,6 @@ package net.chemthunder.saxophone.data.provider;
 import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

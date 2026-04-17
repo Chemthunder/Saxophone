@@ -2,18 +2,17 @@ package net.chemthunder.saxophone.impl.block.entity;
 
 import com.nitron.nitrogen.util.interfaces.ScreenShaker;
 import net.chemthunder.saxophone.impl.index.SaxoBlockEntities;
-import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +24,7 @@ public class CovetousMonolithBlockEntity extends BlockEntity {
     public int radius = 0;
 
     private final int getMaxRadius = 75;
-    private final int secondsToFinalize = 10;
+    private final int secondsToFinalize = 300;
 
     public CovetousMonolithBlockEntity(BlockPos pos, BlockState state) {
         super(SaxoBlockEntities.COVETOUS_MONOLITH, pos, state);
@@ -65,15 +64,23 @@ public class CovetousMonolithBlockEntity extends BlockEntity {
         for (Entity entity : targetsAsEntity) {
             if (entity instanceof LivingEntity living && !(living instanceof PlayerEntity)) {
                 ModUtils.teleportToAsphodel(living);
+                sendBroadcast(living, world);
             }
 
             if (entity instanceof PlayerEntity player) {
-                if (!player.getInventory().contains(SaxoItems.DEIFIC_WARRANT.getDefaultStack())) {
+                if (ModUtils.isViableForSaxophone(player)) {
                     ModUtils.teleportToAsphodel(player);
-                } else {
-                    //
+                    sendBroadcast(player, world);
                 }
             }
+        }
+    }
+
+    private static void sendBroadcast(LivingEntity living, World world) {
+        if (world instanceof ServerWorld serverWorld) {
+            serverWorld.getPlayers().forEach(serverPlayer -> {
+                serverPlayer.sendMessage(Text.literal(living.getNameForScoreboard() + " had their flawed existence expunged"));
+            });
         }
     }
 

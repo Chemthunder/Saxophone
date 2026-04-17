@@ -109,6 +109,12 @@ public class MartyrdomItem extends SaxophoneItem implements CustomHitSoundItem, 
             );
 
 
+            if (target instanceof PlayerEntity) {
+                serverWorld.getPlayers().forEach(serverPlayer -> {
+                    serverPlayer.sendMessage(Text.literal(target.getNameForScoreboard() + " was sent away for a greater cause"));
+                });
+            }
+
             target.setHealth(target.getMaxHealth());
             ModUtils.teleportToAsphodel(target);
         }

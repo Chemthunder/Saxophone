@@ -2,7 +2,6 @@ package net.chemthunder.saxophone.impl.cca.entity;
 
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.saxophone.impl.Saxophone;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;

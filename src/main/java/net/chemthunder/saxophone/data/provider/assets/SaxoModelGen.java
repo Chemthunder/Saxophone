@@ -1,6 +1,5 @@
 package net.chemthunder.saxophone.data.provider.assets;
 
-import net.chemthunder.saxophone.impl.index.SaxoBlockEntities;
 import net.chemthunder.saxophone.impl.index.SaxoBlocks;
 import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

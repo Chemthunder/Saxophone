@@ -17,5 +17,12 @@
     "sounds": [
       "saxophone:item/bell_toll"
     ]
+  },
+
+  "covetous_place": {
+    "subtitle": "sounds.saxophone.covetous_place",
+    "sounds": [
+      "saxophone:event/covetous_place"
+    ]
   }
 }

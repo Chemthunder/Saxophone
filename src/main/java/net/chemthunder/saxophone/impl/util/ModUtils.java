@@ -4,6 +4,7 @@ import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
+import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,6 +27,9 @@ import java.util.List;
 public class ModUtils {
     public static boolean isAvarice(PlayerEntity player) {
         return AvariceComponent.KEY.get(player).isAvarice();
+    }
+    public static boolean isAvarice(LivingEntity living) {
+        return living instanceof PlayerEntity player && AvariceComponent.KEY.get(player).isAvarice();
     }
 
     public static Style nameEffect(MutableText text) {
@@ -64,5 +68,16 @@ public class ModUtils {
 
     public static boolean hasItemInHands(PlayerEntity player, Item item) {
         return player.getMainHandStack().isOf(item) || player.getOffHandStack().isOf(item);
+    }
+
+    public static boolean isViableForSaxophone(PlayerEntity entity) {
+        return !ModUtils.isAvarice(entity) || !entity.getInventory().contains(SaxoItems.DEIFIC_WARRANT.getDefaultStack());
+    }
+
+    // VERY IMPORTANT
+    // DO NOT DELETE
+    // ISTFG
+    public static boolean isViableForSex(Entity entity) {
+        return entity.age > 16;
     }
 }

@@ -112,6 +112,10 @@ public class AuthoritysObituaryItem extends SaxophoneItem {
                 }
 
                 serverPlayer.playSoundToPlayer(SoundEvents.ENTITY_WARDEN_DEATH, SoundCategory.PLAYERS, 1, 0.2f);
+
+                if (target instanceof PlayerEntity) {
+                    serverPlayer.sendMessage(Text.literal(target.getNameForScoreboard() + " was done away with"));
+                }
             });
 
             if (stack.getOrDefault(SaxoDataComponents.CHARGES, 3) > 1) {

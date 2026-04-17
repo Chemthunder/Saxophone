@@ -7,9 +7,7 @@ import net.minecraft.entity.damage.DamageType;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public interface SaxoDamageTypeTags {

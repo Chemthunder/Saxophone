@@ -3,13 +3,16 @@ package net.chemthunder.saxophone.impl.block;
 import com.mojang.serialization.MapCodec;
 import net.chemthunder.saxophone.impl.block.entity.CovetousMonolithBlockEntity;
 import net.chemthunder.saxophone.impl.index.SaxoBlockEntities;
-import net.minecraft.block.Block;
+import net.chemthunder.saxophone.impl.index.SaxoSoundEvents;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -35,5 +38,13 @@ public class CovetousMonolithBlock extends BlockWithEntity {
 
     protected BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        world.getPlayers().forEach(player -> {
+            player.playSoundToPlayer(SaxoSoundEvents.COVETOUS_PLACE, SoundCategory.BLOCKS, 1, 1);
+        });
+
+        super.onPlaced(world, pos, state, placer, itemStack);
     }
 }
