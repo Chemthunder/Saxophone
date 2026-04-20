@@ -24,7 +24,7 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                 AvariceComponent component = AvariceComponent.KEY.get(player);
 
                                 component.setAvarice(!component.isAvarice());
-                                context.getSource().sendFeedback(() -> Text.literal("Set AvariceState to " + component.isAvarice()), true);
+                                context.getSource().sendFeedback(() -> Text.literal("Set AvariceState to " + component.isAvarice()), false);
                             }
                             return 1;
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))
@@ -38,7 +38,7 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                 AvariceComponent component = AvariceComponent.KEY.get(player);
 
                                 component.setInvisible(!component.isInvisible());
-                                context.getSource().sendFeedback(() -> Text.literal("Set Invisibility to " + component.isInvisible()), true);
+                                context.getSource().sendFeedback(() -> Text.literal("Set Invisibility to " + component.isInvisible()), false);
                             }
                             return 1;
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))
@@ -52,7 +52,7 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                 AvariceComponent component = AvariceComponent.KEY.get(player);
 
                                 component.setInvincible(!component.isInvincible());
-                                context.getSource().sendFeedback(() -> Text.literal("Set Invulnerability to " + component.isInvincible()), true);
+                                context.getSource().sendFeedback(() -> Text.literal("Set Invulnerability to " + component.isInvincible()), false);
                             }
                             return 1;
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))

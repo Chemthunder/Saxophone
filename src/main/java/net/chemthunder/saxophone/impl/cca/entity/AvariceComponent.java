@@ -7,9 +7,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
-import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
-public class AvariceComponent implements AutoSyncedComponent, CommonTickingComponent {
+public class AvariceComponent implements AutoSyncedComponent {
     public static final ComponentKey<AvariceComponent> KEY = MiscUtils.getOrCreateKey(Saxophone.id("avarice"), AvariceComponent.class);
     private final PlayerEntity player;
 
@@ -23,13 +22,6 @@ public class AvariceComponent implements AutoSyncedComponent, CommonTickingCompo
 
     public void sync() {
         KEY.sync(player);
-    }
-
-
-    public void tick() {
-        // if (this.avarice) {
-        //     player.setGlowing(this.invincible);
-        // }
     }
 
     public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {

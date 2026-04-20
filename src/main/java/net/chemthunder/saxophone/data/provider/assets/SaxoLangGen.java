@@ -19,7 +19,6 @@ public class SaxoLangGen extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         SaxoItems.ITEMS.registerLang(wrapperLookup, translationBuilder);
         SaxoDamageTypeTags.registerLang(translationBuilder);
-       // SaxoBlocks.BLOCKS.registerLang(wrapperLookup, translationBuilder);
         SaxoStatusEffects.STATUS_EFFECTS.registerLang(wrapperLookup, translationBuilder);
 
         translationBuilder.add("itemGroup.saxophone", "Saxophone");
@@ -33,9 +32,7 @@ public class SaxoLangGen extends FabricLanguageProvider {
         translationBuilder.add("sounds.saxophone.covetous_monolith", "Covetous Monolith is placed");
 
         // Damage Sources
-        DatagenUtils.Lang.registerDamageType(translationBuilder, SaxoDamageSources.AVARICES_WILL,
-                "%1$s was claimed by unknown forces",
-                "%1$s was claimed by unknown forces",
+        DatagenUtils.Lang.registerSingleMessageDamageType(translationBuilder, SaxoDamageSources.AVARICES_WILL,
                 "%1$s was claimed by unknown forces"
         );
 

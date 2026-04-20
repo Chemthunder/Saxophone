@@ -7,6 +7,7 @@ import net.acoyt.acornlib.api.util.ParticleUtils;
 import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
 import net.chemthunder.saxophone.api.extendable.SaxophoneItem;
 import net.chemthunder.saxophone.impl.Saxophone;
+import net.chemthunder.saxophone.impl.cca.entity.InsistenceComponent;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
@@ -20,6 +21,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -79,5 +82,17 @@ public class WrathOfTwilightItem extends SaxophoneItem implements ModelVaryingIt
 
     public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
         return !miner.isCreative();
+    }
+
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+        InsistenceComponent insis = InsistenceComponent.KEY.get(entity);
+
+        if (!user.getItemCooldownManager().isCoolingDown(this)) {
+            if (insis.getActiveTicks() == 0) {
+                insis.setActiveTicks(240);
+                user.getItemCooldownManager().set(this, 400);
+            }
+        }
+        return super.useOnEntity(stack, user, entity, hand);
     }
 }

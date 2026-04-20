@@ -22,9 +22,11 @@ public class RevenantEffigyItem extends SaxophoneItem {
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        RevenantDeathAnimationComponent component = RevenantDeathAnimationComponent.KEY.get(user);
+        if (user.isCreative()) {
+            RevenantDeathAnimationComponent component = RevenantDeathAnimationComponent.KEY.get(user);
 
-        component.beginAnimation();
+            component.beginAnimation();
+        }
         return super.use(world, user, hand);
     }
 }
