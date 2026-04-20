@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 public interface SaxoItems {
     ItemRegistrant ITEMS = new ItemRegistrant(Saxophone.MOD_ID);
 
-    Item LIBERATION = ITEMS.register("liberation", LiberationItem::new, new Item.Settings().maxCount(1));
+    Item LIBERATION = ITEMS.register("liberation", LiberationItem::new, new Item.Settings().maxCount(1).attributeModifiers(LiberationItem.createAttributeModifiers()));
     Item CONTRACT = ITEMS.register("contract", ContractItem::new, new Item.Settings().maxCount(1));
     Item DEIFIC_WARRANT = ITEMS.register("deific_warrant", DeificWarrantItem::new, new Item.Settings().maxCount(1));
     Item FORSAKEN_CHARTER = ITEMS.register("forsaken_charter", ForsakenCharterItem::new, new Item.Settings().maxCount(1));
