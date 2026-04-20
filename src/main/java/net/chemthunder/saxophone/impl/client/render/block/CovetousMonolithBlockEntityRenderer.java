@@ -3,14 +3,22 @@ package net.chemthunder.saxophone.impl.client.render.block;
 import com.nitron.nitrogen.render.RenderUtils;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.block.entity.CovetousMonolithBlockEntity;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 
+@Environment(EnvType.CLIENT)
 public class CovetousMonolithBlockEntityRenderer implements BlockEntityRenderer<CovetousMonolithBlockEntity> {
+    public CovetousMonolithBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
+        //
+    }
+
     public void render(CovetousMonolithBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
         matrices.translate(-entity.getPos().getX(), -entity.getPos().getY(), -entity.getPos().getZ());
