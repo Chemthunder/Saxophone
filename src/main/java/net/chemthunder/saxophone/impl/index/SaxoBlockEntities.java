@@ -11,7 +11,7 @@ public interface SaxoBlockEntities {
     BlockEntityTypeRegistrant BLOCK_ENTITIES = new BlockEntityTypeRegistrant(Saxophone.MOD_ID);
 
     BlockEntityType<CovetousMonolithBlockEntity> COVETOUS_MONOLITH = BLOCK_ENTITIES.register(
-            "switch",
+            "covetous_monolith",
             FabricBlockEntityTypeBuilder.create(CovetousMonolithBlockEntity::new, SaxoBlocks.COVETOUS_MONOLITH)
     );
 
