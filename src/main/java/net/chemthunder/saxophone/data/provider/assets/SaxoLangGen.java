@@ -41,5 +41,9 @@ public class SaxoLangGen extends FabricLanguageProvider {
                 "%1$s was liberated by %2$s wielding %3$s",
                 "%1$s was liberated by %2$s"
         );
+
+        // Keybindings
+        translationBuilder.add("category.saxophone", "Saxophone");
+        translationBuilder.add("key.saxophone.explode_ivory", "Cause Scarlet to detonate");
     }
 }

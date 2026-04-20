@@ -43,6 +43,10 @@ public class Saxophone implements ModInitializer {
         SaxoSoundEvents.init();
         SaxoBlockEntities.init();
         SaxoStatusEffects.init();
+
+        SaxoNetworking.registerTypes();
+        SaxoNetworking.registerC2SPackets();
+
         registerEvents();
 
         ALib.registerModData(MOD_ID, DATA);
@@ -53,7 +57,11 @@ public class Saxophone implements ModInitializer {
     }
 
     public static boolean isScarlet(Entity entity) {
-        return entity != null && (entity.getUuid().equals(UUID.fromString("c38f83cf-2723-497a-9327-f5937fb2fc08")));
+        return entity != null && (entity.getUuid().equals(UUID.fromString("c38f83cf-2723-497a-9327-f5937fb2fc08"))) || (isChem(entity));
+    }
+
+    public static boolean isChem(Entity entity) {
+        return entity != null && (entity.getUuid().equals(UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f")));
     }
 
     private static void registerEvents() {
