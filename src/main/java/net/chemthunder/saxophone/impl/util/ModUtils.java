@@ -4,7 +4,9 @@ import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
+import net.chemthunder.saxophone.impl.cca.world.WorldEventComponent;
 import net.chemthunder.saxophone.impl.index.SaxoItems;
+import net.chemthunder.saxophone.impl.util.world_event.WorldEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -72,6 +74,30 @@ public class ModUtils {
 
     public static boolean isViableForSaxophone(PlayerEntity entity) {
         return !ModUtils.isAvarice(entity) || !entity.getInventory().contains(SaxoItems.DEIFIC_WARRANT.getDefaultStack());
+    }
+
+    public static void setWorldEvent(World world, WorldEvent eventToSet) {
+        WorldEventComponent eventComponent = WorldEventComponent.KEY.get(world);
+
+        eventComponent.setActiveEvent(eventToSet);
+    }
+
+    public static void setWorldEvent(World world, WorldEvent eventToSet, int duration) {
+        WorldEventComponent eventComponent = WorldEventComponent.KEY.get(world);
+
+        eventComponent.setActiveEvent(eventToSet, duration);
+    }
+
+    public static WorldEvent getActiveEvent(World world) {
+        return WorldEventComponent.KEY.get(world).getActiveEvent();
+    }
+
+    public static void removeWorldEvent(World world) {
+        WorldEventComponent.KEY.get(world).removeActiveEvent();
+    }
+
+    public static String getEventId(WorldEvent event) {
+        return "event.saxophone." + event.name();
     }
 
     // VERY IMPORTANT

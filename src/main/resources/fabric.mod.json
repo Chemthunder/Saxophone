@@ -43,7 +43,9 @@
       "saxophone:avarice",
       "saxophone:forsaken_charter",
       "saxophone:revenant_death",
-      "saxophone:insistence"
+      "saxophone:insistence",
+
+      "saxophone:world_event"
     ]
   }
 }

@@ -36,7 +36,6 @@ public class RevenantDeathAnimationComponent implements AutoSyncedComponent, Com
     public void tick() {
         if (this.animTicks > 0) {
             tickAnimations();
-            player.sendMessage(Text.of(this.animTicks + ""), true);
             this.animTicks--;
             if (this.animTicks == 0) {
                 endAnimation();

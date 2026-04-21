@@ -24,6 +24,11 @@ public interface SaxoDamageSources {
         return entity.getDamageSources().create(AVARICES_WILL);
     }
 
+    RegistryKey<DamageType> IVORY_EXPLODE = of("ivory_explode");
+    static DamageSource ivoryExplode(Entity entity) {
+        return entity.getDamageSources().create(IVORY_EXPLODE);
+    }
+
     private static RegistryKey<DamageType> of(String name) {
         RegistryKey<DamageType> key = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Saxophone.id(name));
         DAMAGE_SOURCES.put(key, name);

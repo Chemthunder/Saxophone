@@ -1,6 +1,7 @@
 package net.chemthunder.saxophone.impl.util.keybinds;
 
 import net.chemthunder.saxophone.impl.Saxophone;
+import net.chemthunder.saxophone.impl.networking.c2s.ExplodeIvoryPayload;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
@@ -22,7 +23,7 @@ public class SaxophoneKeybindings {
                 "key.saxophone.explode_ivory",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_UP,
-                redemptionCategory
+                saxophoneCategory
         ));
     }
 
@@ -37,7 +38,7 @@ public class SaxophoneKeybindings {
     private static void handleExplodeIvory(MinecraftClient client) {
         if (client.player != null) {
             try {
-                IkirGameModeSwitchPayload.send();
+                ExplodeIvoryPayload.send();
             } catch (Exception e) {
                 Saxophone.LOGGER.error("Failed to send Ikir Switch Payload");
             }
