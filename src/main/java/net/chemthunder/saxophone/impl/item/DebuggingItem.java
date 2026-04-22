@@ -1,9 +1,7 @@
 package net.chemthunder.saxophone.impl.item;
 
-import net.chemthunder.saxophone.impl.cca.world.WorldEventComponent;
 import net.chemthunder.saxophone.impl.index.custom.SaxoWorldEvents;
 import net.chemthunder.saxophone.impl.util.ModUtils;
-import net.chemthunder.saxophone.impl.util.world_event.WorldEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

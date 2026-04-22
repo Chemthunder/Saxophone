@@ -1,0 +1,30 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"layer0": "reverence:item/emptiness_handheld"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -90, 55],
+			"translation": [0, 9, 0.5],
+			"scale": [1.45, 1.45, 1.07]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, -55],
+			"translation": [0, 9, 0.5],
+			"scale": [1.45, 1.45, 1.07]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -90, 25],
+			"translation": [1.13, 3.7, 1.38],
+			"scale": [0.94, 0.94, 0.94]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, -25],
+			"translation": [1.13, 3.7, 1.38],
+			"scale": [0.94, 0.94, 0.94]
+		}
+	}
+}

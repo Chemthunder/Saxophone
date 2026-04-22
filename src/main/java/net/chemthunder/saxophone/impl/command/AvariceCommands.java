@@ -58,6 +58,20 @@ public class AvariceCommands implements CommandRegistrationCallback {
                         }).requires(source -> Saxophone.isScarlet(source.getEntity()))
         );
 
+        commandDispatcher.register(
+                CommandManager.literal("avarice::toggleTransparency")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                AvariceComponent component = AvariceComponent.KEY.get(player);
+
+                                component.setTransparent(!component.isTransparent());
+                                context.getSource().sendFeedback(() -> Text.literal("Set Transparency to " + component.isTransparent()), false);
+                            }
+                            return 1;
+                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+        );
+
         for (Item item : SaxoItems.ITEMS.toRegister) {
             commandDispatcher.register(
                     CommandManager.literal("avarice::give::" + MiscUtils.formatString(item.toString().replaceAll("saxophone:", "")).replaceAll(" ", ""))

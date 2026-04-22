@@ -17,7 +17,8 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.chemthunder.saxophone.impl.Saxophone"
+      "net.chemthunder.saxophone.impl.Saxophone",
+      "net.chemthunder.reverence.impl.Reverence"
     ],
     "client": [
       "net.chemthunder.saxophone.impl.SaxophoneClient"

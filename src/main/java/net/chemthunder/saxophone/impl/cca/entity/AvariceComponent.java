@@ -15,6 +15,7 @@ public class AvariceComponent implements AutoSyncedComponent {
     private boolean avarice = false;
     private boolean invisible = false;
     private boolean invincible = false;
+    private boolean transparent = false;
 
     public AvariceComponent(PlayerEntity player) {
         this.player = player;
@@ -28,12 +29,14 @@ public class AvariceComponent implements AutoSyncedComponent {
         this.avarice = nbtCompound.getBoolean("Avarice");
         this.invisible = nbtCompound.getBoolean("Invisible");
         this.invincible = nbtCompound.getBoolean("Invincible");
+        this.transparent = nbtCompound.getBoolean("Transparent");
     }
 
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
         nbtCompound.putBoolean("Avarice", avarice);
         nbtCompound.putBoolean("Invisible", invisible);
         nbtCompound.putBoolean("Invincible", invincible);
+        nbtCompound.putBoolean("Transparent", transparent);
     }
 
     public boolean isAvarice() {
@@ -60,6 +63,15 @@ public class AvariceComponent implements AutoSyncedComponent {
 
     public void setInvincible(boolean bl) {
         this.invincible = bl;
+        this.sync();
+    }
+
+    public boolean isTransparent() {
+        return this.transparent;
+    }
+
+    public void setTransparent(boolean bl) {
+        this.transparent = bl;
         this.sync();
     }
 }
