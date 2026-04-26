@@ -21,7 +21,7 @@ public interface SaxoItems {
 
     Item COVETOUS_MONOLITH_ITEM = ITEMS.register("covetous_monolith", CovetousMonolithBlockItem::new, new Item.Settings().maxCount(1));
 
-    Item DEBUGGING_ITEM = ITEMS.register("debugging_item", DebuggingItem::new, new Item.Settings().maxCount(1));
+   // Item DEBUGGING_ITEM = ITEMS.register("debugging_item", DebuggingItem::new, new Item.Settings().maxCount(1));
 
     static void init() {}
 }

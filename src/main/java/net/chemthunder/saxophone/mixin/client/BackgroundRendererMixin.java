@@ -1,7 +1,6 @@
 package net.chemthunder.saxophone.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.chemthunder.saxophone.impl.index.custom.SaxoWorldEvents;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BackgroundRenderer;
@@ -18,7 +17,7 @@ public abstract class BackgroundRendererMixin {
     private static void saxophone$customFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci) {
         MinecraftClient client = MinecraftClient.getInstance();
 
-        if (ModUtils.isInAsphodel(client.player) || ModUtils.getActiveEvent(client.world).equals(SaxoWorldEvents.NIGHT_ETERNAL)) {
+        if (ModUtils.isInAsphodel(client.player)) {
             RenderSystem.setShaderFogStart(1);
             RenderSystem.setShaderFogEnd(6);
             RenderSystem.setShaderFogShape(FogShape.SPHERE);

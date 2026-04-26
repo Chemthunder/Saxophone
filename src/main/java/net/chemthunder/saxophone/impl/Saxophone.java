@@ -3,7 +3,6 @@ package net.chemthunder.saxophone.impl;
 import net.acoyt.acornlib.api.ALib;
 import net.chemthunder.saxophone.impl.command.AvariceCommands;
 import net.chemthunder.saxophone.impl.index.*;
-import net.chemthunder.saxophone.impl.index.custom.SaxoWorldEvents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.entity.Entity;
@@ -47,8 +46,6 @@ public class Saxophone implements ModInitializer {
 
         SaxoNetworking.registerTypes();
         SaxoNetworking.registerC2SPackets();
-
-        SaxoWorldEvents.init();
 
         registerEvents();
 
