@@ -85,7 +85,7 @@ public class MartyrdomItem extends SaxophoneItem implements CustomHitSoundItem, 
     }
 
     public void getPermakillEffect(PlayerEntity player, LivingEntity target, World world) {
-        if (world instanceof ServerWorld serverWorld) {
+        if (world instanceof ServerWorld serverWorld && !ModUtils.isAvarice(target)) {
             serverWorld.spawnParticles(ParticleTypes.SMOKE,
                     target.getX(),
                     target.getY() + 0.5f,

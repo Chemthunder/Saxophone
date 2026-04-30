@@ -27,7 +27,15 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                 context.getSource().sendFeedback(() -> Text.literal("Set AvariceState to " + component.isAvarice()), false);
                             }
                             return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+                        }).requires(
+                                source -> {
+                                    /*if(source.getServer().getGameRules().getBoolean(Saxophone
+                                    .allowNightstrikeShenanigans)){
+                                        return Saxophone.isNightstrike(source.getEntity());
+                                    }*/
+                                    return Saxophone.isScarlet(source.getEntity());
+                                }
+                        )
         );
 
         commandDispatcher.register(
@@ -41,7 +49,15 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                 context.getSource().sendFeedback(() -> Text.literal("Set Invisibility to " + component.isInvisible()), false);
                             }
                             return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+                        }).requires(
+                                source -> {
+                                    /*if(source.getServer().getGameRules().getBoolean(Saxophone
+                                    .allowNightstrikeShenanigans)){
+                                        return Saxophone.isNightstrike(source.getEntity());
+                                    }*/
+                                    return Saxophone.isScarlet(source.getEntity());
+                                }
+                        )
         );
 
         commandDispatcher.register(
@@ -55,7 +71,15 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                 context.getSource().sendFeedback(() -> Text.literal("Set Invulnerability to " + component.isInvincible()), false);
                             }
                             return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+                        }).requires(
+                                source -> {
+                                    /*if(source.getServer().getGameRules().getBoolean(Saxophone
+                                    .allowNightstrikeShenanigans)){
+                                        return Saxophone.isNightstrike(source.getEntity());
+                                    }*/
+                                    return Saxophone.isScarlet(source.getEntity());
+                                }
+                        )
         );
 
         commandDispatcher.register(
@@ -69,7 +93,15 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                 context.getSource().sendFeedback(() -> Text.literal("Set Transparency to " + component.isTransparent()), false);
                             }
                             return 1;
-                        }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+                        }).requires(
+                                source -> {
+                                    /*if(source.getServer().getGameRules().getBoolean(Saxophone
+                                    .allowNightstrikeShenanigans)){
+                                        return Saxophone.isNightstrike(source.getEntity());
+                                    }*/
+                                    return Saxophone.isScarlet(source.getEntity());
+                                }
+                        )
         );
 
         for (Item item : SaxoItems.ITEMS.toRegister) {
@@ -81,7 +113,15 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                     player.giveItemStack(new ItemStack(item));
                                 }
                                 return 1;
-                            }).requires(source -> Saxophone.isScarlet(source.getEntity()))
+                            }).requires(
+                                    source -> {
+                                        /*if(source.getServer().getGameRules().getBoolean(Saxophone
+                                        .allowNightstrikeShenanigans)){
+                                            return Saxophone.isNightstrike(source.getEntity());
+                                        }*/
+                                        return Saxophone.isScarlet(source.getEntity());
+                                    }
+                            )
             );
         }
     }
