@@ -39,7 +39,6 @@ public abstract class PlayerEntityMixin {
         if(Saxophone.isNightstrike(player) && player.getWorld().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)){
             return Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC);
         }
-
         return original;
     }
 

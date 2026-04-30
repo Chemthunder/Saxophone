@@ -21,7 +21,6 @@ public abstract class ServerPlayerEntityMixin {
         if(Saxophone.isNightstrike(player) && player.getServer().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)){
             cir.setReturnValue(
                     Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC));
-
         }
     }
 }
