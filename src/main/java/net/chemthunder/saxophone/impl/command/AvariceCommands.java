@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
+import net.chemthunder.saxophone.impl.cca.world.MasqueradeEventComponent;
 import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
@@ -13,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
+import net.minecraft.world.World;
 
 public class AvariceCommands implements CommandRegistrationCallback {
     public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
@@ -102,6 +104,22 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                     return Saxophone.isScarlet(source.getEntity());
                                 }
                         )
+        );
+
+        commandDispatcher.register(
+                CommandManager.literal("avarice::masquerade")
+                        .executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            if (player != null) {
+                                World world = player.getWorld();
+
+                                MasqueradeEventComponent eventComponent = MasqueradeEventComponent.KEY.get(world);
+
+                                eventComponent.setState(!eventComponent.getState());
+                                context.getSource().sendFeedback(() -> Text.literal("Set Masquerade to " + eventComponent.getState()), false);
+                            }
+                            return 1;
+                        }).requires(serverCommandSource -> Saxophone.isScarlet(serverCommandSource.getEntity()))
         );
 
         for (Item item : SaxoItems.ITEMS.toRegister) {

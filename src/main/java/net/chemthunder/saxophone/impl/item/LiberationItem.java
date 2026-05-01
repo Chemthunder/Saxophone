@@ -87,7 +87,7 @@ public class LiberationItem extends SaxophoneItem implements CustomHitParticleIt
     }
 
     public DamageSource getKillSource(LivingEntity livingEntity) {
-        return SaxoDamageSources.liberate(livingEntity);
+        return livingEntity.getDamageSources().create(SaxoDamageSources.LIBERATE);
     }
 
     public void playHitSound(PlayerEntity playerEntity, Entity entity) {

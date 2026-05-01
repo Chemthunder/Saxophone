@@ -24,7 +24,7 @@ public class SaxophoneKeybindManager {
                 );
 
                 world.playSound(capturedPlayer, capturedPlayer.getBlockPos(), SoundEvents.ENTITY_GENERIC_EXPLODE.value(), SoundCategory.PLAYERS, 1, 1);
-                capturedPlayer.damage(SaxoDamageSources.ivoryExplode(player), 999f);
+                capturedPlayer.damage(capturedPlayer.getDamageSources().create(SaxoDamageSources.IVORY_EXPLODE), 999f);
             }
         });
     }

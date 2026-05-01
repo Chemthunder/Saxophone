@@ -1,41 +1,33 @@
 package net.chemthunder.saxophone.impl.index.data;
 
 import net.chemthunder.saxophone.impl.Saxophone;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface SaxoDamageSources {
-    Map<RegistryKey<DamageType>, String> DAMAGE_SOURCES = new HashMap<>();
+    List<DamageSourceData> DATA = new ArrayList<>();
 
-    RegistryKey<DamageType> LIBERATE = of("liberate");
-    static DamageSource liberate(Entity entity) {
-        return entity.getDamageSources().create(LIBERATE);
-    }
+    RegistryKey<DamageType> LIBERATE = register("liberate", 0.0f);
+    RegistryKey<DamageType> AVARICES_WILL = register("avarices_will", 0.0f);
+    RegistryKey<DamageType> IVORY_EXPLODE = register("ivory_explode", 99.9f);
 
-    RegistryKey<DamageType> AVARICES_WILL = of("avarices_will");
-    static DamageSource avaricesWill(Entity entity) {
-        return entity.getDamageSources().create(AVARICES_WILL);
-    }
-
-    RegistryKey<DamageType> IVORY_EXPLODE = of("ivory_explode");
-    static DamageSource ivoryExplode(Entity entity) {
-        return entity.getDamageSources().create(IVORY_EXPLODE);
-    }
-
-    private static RegistryKey<DamageType> of(String name) {
+    private static RegistryKey<DamageType> register(String name, float exhaustion) {
         RegistryKey<DamageType> key = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Saxophone.id(name));
-        DAMAGE_SOURCES.put(key, name);
+        DamageSourceData data = new DamageSourceData(key, name, exhaustion);
+
+        DATA.add(data);
         return key;
     }
 
     static void bootstrap(Registerable<DamageType> registerable) {
-        DAMAGE_SOURCES.forEach((damageTypeRegistryKey, s) -> registerable.register(damageTypeRegistryKey, new DamageType(s, 0.0f)));
+        DATA.forEach(damageSourceData -> registerable.register(damageSourceData.key, new DamageType(damageSourceData.name, damageSourceData.exhaustion)));
     }
+
+    record DamageSourceData(RegistryKey<DamageType> key, String name, float exhaustion) {}
 }
+

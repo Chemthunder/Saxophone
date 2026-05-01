@@ -52,6 +52,7 @@ public abstract class PlayerEntityMixin {
             }
         }
     }
+
     @Inject(method="isInvulnerableTo",at=@At("TAIL"),cancellable = true)
     private void saxophone$negateDamageAvarice(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir){
         if (AvariceComponent.KEY.get(this).isInvincible()) {

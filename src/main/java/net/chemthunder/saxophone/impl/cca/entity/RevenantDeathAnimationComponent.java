@@ -116,7 +116,7 @@ public class RevenantDeathAnimationComponent implements AutoSyncedComponent, Com
                 serverPlayer.playSoundToPlayer(SoundEvents.ENTITY_WITHER_DEATH, SoundCategory.PLAYERS, 0.6f, 0.2f);
             });
 
-            player.damage(SaxoDamageSources.avaricesWill(player), player.getMaxHealth() * player.getMaxHealth());
+            player.damage(player.getDamageSources().create(SaxoDamageSources.AVARICES_WILL), player.getMaxHealth() * player.getMaxHealth());
 
             AvariceComponent avariceComponent = AvariceComponent.KEY.get(player);
             avariceComponent.setAvarice(true);
