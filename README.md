@@ -1,8 +1,10 @@
-# TODO
-- Finish Covetous Monolith
-- Add "Avarice Rule", negating effects of Saxophone items if the target is an `Avarice` instance.
-- Add Data-driven modifiers for buffs and debuffs as UUID perms...
+# TODO!
+- Fix Avarice emitting particles when invisible
+- Finish World Gone Folly event!
 
-# BUGS
-- Game failure upon taking damage while `Invulnerability#AvariceState` is active.
-- 
+## WGF
+--------------Environmental effects
+- Folly sun!
+- Harsh black sky
+- Stars are painted red
+- dense fog for everyone but ava
