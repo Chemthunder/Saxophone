@@ -1,5 +1,6 @@
 package net.chemthunder.saxophone.mixin;
 
+import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -16,6 +17,10 @@ public abstract class ServerPlayerEntityMixin {
         ServerPlayerEntity player = (ServerPlayerEntity)(Object)this;
         if (ModUtils.isAvarice(player)) {
             cir.setReturnValue(Text.literal("Avarice").withColor(0xff003c).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED));
+        }
+        if(Saxophone.isNightstrike(player) && player.getServer().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)){
+            cir.setReturnValue(
+                    Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC));
         }
     }
 }

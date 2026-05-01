@@ -37,7 +37,7 @@ public class AuthoritysObituaryItem extends SaxophoneItem {
         Box box = new Box(target.getBlockPos());
 
         for (Entity entity : shockWavedEntities) {
-            if (entity instanceof LivingEntity living) {
+            if (entity instanceof LivingEntity living && !ModUtils.isAvarice(living)) {
                 if (living != player) {
                     living.addVelocity(box.getCenter().subtract(entity.getPos()).multiply(-1f));
                     living.addVelocity(0, 3f, 0);
@@ -124,7 +124,7 @@ public class AuthoritysObituaryItem extends SaxophoneItem {
                 stack.decrement(1);
             }
 
-            if (target.getServer() != null) {
+            if (target.getServer() != null && !ModUtils.isAvarice(target)) {
                 target.setHealth(target.getMaxHealth());
                 ModUtils.teleportToAsphodel(target);
             }
