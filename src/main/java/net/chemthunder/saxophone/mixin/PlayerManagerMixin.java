@@ -1,9 +1,11 @@
 package net.chemthunder.saxophone.mixin;
 
-
 import net.minecraft.server.PlayerManager;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * @author Chemthunder
+ */
 @Mixin(PlayerManager.class)
 public abstract class PlayerManagerMixin {
 //    @WrapWithCondition(

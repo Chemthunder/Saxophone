@@ -13,6 +13,9 @@ import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+/**
+ * @author Chemthunder
+ */
 @Mixin(AbstractInventoryScreen.class)
 public abstract class AbstractInventoryScreenMixin {
 
@@ -29,7 +32,6 @@ public abstract class AbstractInventoryScreenMixin {
                 return Text.literal("Repentance.").withColor(Saxophone.modColor).formatted(Formatting.ITALIC);
             }
         }
-
         return original.call(instance);
     }
 }

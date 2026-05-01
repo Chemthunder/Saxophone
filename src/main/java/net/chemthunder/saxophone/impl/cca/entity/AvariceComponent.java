@@ -8,6 +8,9 @@ import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
+/**
+ * @author Chemthunder
+ */
 public class AvariceComponent implements AutoSyncedComponent {
     public static final ComponentKey<AvariceComponent> KEY = MiscUtils.getOrCreateKey(Saxophone.id("avarice"), AvariceComponent.class);
     private final PlayerEntity player;

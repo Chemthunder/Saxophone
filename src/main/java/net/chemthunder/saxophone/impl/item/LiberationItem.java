@@ -33,6 +33,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public class LiberationItem extends SaxophoneItem implements CustomHitParticleItem, CustomKillSourceItem, CustomHitSoundItem, ModelVaryingItem {
     public static final SweepParticleEffect[] EFFECTS = new SweepParticleEffect[]{
         new SweepParticleEffect(0xd70048, 0x0c0105)

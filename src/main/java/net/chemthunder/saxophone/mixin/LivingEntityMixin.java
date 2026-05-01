@@ -20,6 +20,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * @author Chemthunder
+ */
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements Attackable {
     public LivingEntityMixin(EntityType<?> type, World world) {
@@ -76,19 +79,17 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
 
     @Inject(method = "applyMovementInput", at = @At("HEAD"), cancellable = true)
     private void saxophone$cancelMovement(Vec3d movementInput, float slipperiness, CallbackInfoReturnable<Vec3d> cir) {
-        if ((Object) this instanceof LivingEntity player) {
-            if (InsistenceComponent.KEY.get(player).getActiveTicks() > 0) {
-                cir.setReturnValue(Vec3d.ZERO);
-            }
+        LivingEntity living = (LivingEntity) (Object) this;
+        if (InsistenceComponent.KEY.get(living).getActiveTicks() > 0) {
+            cir.setReturnValue(Vec3d.ZERO);
         }
     }
 
     @Inject(method = "applyFluidMovingSpeed", at = @At("HEAD"), cancellable = true)
     private void saxophone$cancelFluidMovement(double gravity, boolean falling, Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
-        if ((Object) this instanceof LivingEntity player) {
-            if (InsistenceComponent.KEY.get(player).getActiveTicks() > 0) {
-                cir.setReturnValue(Vec3d.ZERO);
-            }
+        LivingEntity living = (LivingEntity) (Object) this;
+        if (InsistenceComponent.KEY.get(living).getActiveTicks() > 0) {
+            cir.setReturnValue(Vec3d.ZERO);
         }
     }
 }

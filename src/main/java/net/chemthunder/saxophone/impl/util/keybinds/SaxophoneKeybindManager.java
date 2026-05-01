@@ -8,6 +8,9 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
+/**
+ * @author Chemthunder
+ */
 public class SaxophoneKeybindManager {
     public static void explodeIvory(PlayerEntity player) {
         World world = player.getWorld();

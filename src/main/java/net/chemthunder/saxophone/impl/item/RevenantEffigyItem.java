@@ -11,6 +11,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
+/**
+ * @author Chemthunder
+ */
 public class RevenantEffigyItem extends SaxophoneItem {
     public RevenantEffigyItem(Settings settings) {
         super(settings);

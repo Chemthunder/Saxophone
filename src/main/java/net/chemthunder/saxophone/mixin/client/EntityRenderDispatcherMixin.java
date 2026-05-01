@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * @author JadedChara
+ * 
+ */
 @Mixin(EntityRenderDispatcher.class)
 public abstract class EntityRenderDispatcherMixin {
     @Inject(
@@ -19,9 +23,9 @@ public abstract class EntityRenderDispatcherMixin {
             cancellable = true
     )
     private static void suspendHitbox(MatrixStack matrices, VertexConsumer vertices, Entity entity, float tickDelta, float red, float green, float blue, CallbackInfo ci){
-        if(entity instanceof PlayerEntity player){
+        if (entity instanceof PlayerEntity player) {
             AvariceComponent component = AvariceComponent.KEY.get(player);
-            if(component.isInvisible()){
+            if (component.isInvisible()) {
                 ci.cancel();
             }
         }

@@ -10,7 +10,8 @@
   ],
   "contributors": [
     "Hstar747",
-    "DexFlex_YT"
+    "DexFlex_YT",
+    "JadedChara / Nightstrike"
   ],
   "license": "CC0-1.0",
   "icon": "assets/saxophone/icon.png",
@@ -44,9 +45,7 @@
       "saxophone:avarice",
       "saxophone:forsaken_charter",
       "saxophone:revenant_death",
-      "saxophone:insistence",
-
-      "saxophone:world_event"
+      "saxophone:insistence"
     ]
   }
 }

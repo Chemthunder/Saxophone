@@ -8,6 +8,9 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoBlocks {
     BlockRegistrant BLOCKS = new BlockRegistrant(Saxophone.MOD_ID);
 
@@ -15,5 +18,6 @@ public interface SaxoBlocks {
     Block COVETOUS_MONOLITH = BLOCKS.register("covetous_monolith", CovetousMonolithBlock::new, AbstractBlock.Settings.copy(Blocks.BEDROCK));
 
     static void init() {}
+    
     static void clientInit() {}
 }

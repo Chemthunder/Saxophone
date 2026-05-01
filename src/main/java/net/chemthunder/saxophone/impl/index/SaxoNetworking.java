@@ -6,6 +6,9 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoNetworking {
     static void registerTypes() {
         PayloadTypeRegistry.playC2S().register(ExplodeIvoryPayload.ID, ExplodeIvoryPayload.CODEC);

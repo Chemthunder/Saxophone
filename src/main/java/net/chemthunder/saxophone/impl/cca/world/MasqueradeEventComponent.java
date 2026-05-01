@@ -9,6 +9,9 @@ import net.minecraft.world.World;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
+/**
+ * @author Chemthunder
+ */
 public class MasqueradeEventComponent implements AutoSyncedComponent {
     public static final ComponentKey<MasqueradeEventComponent> KEY = MiscUtils.getOrCreateKey(Saxophone.id("masquerade_event"), MasqueradeEventComponent.class);
     private final World world;

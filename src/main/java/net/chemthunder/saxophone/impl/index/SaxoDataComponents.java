@@ -6,6 +6,9 @@ import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.component.ContractComponent;
 import net.minecraft.component.ComponentType;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoDataComponents {
     ComponentTypeRegistrant DATA_COMPONENTS = new ComponentTypeRegistrant(Saxophone.MOD_ID);
 

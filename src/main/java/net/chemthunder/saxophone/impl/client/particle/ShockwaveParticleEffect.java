@@ -12,6 +12,9 @@ import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.util.math.Direction;
 
+/**
+ * @author AcoYT
+ */
 public record ShockwaveParticleEffect(int color, float size, String axis) implements ParticleEffect {
     public static final MapCodec<ShockwaveParticleEffect> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             PortingUtils.RGB.fieldOf("color").forGetter(ShockwaveParticleEffect::color),

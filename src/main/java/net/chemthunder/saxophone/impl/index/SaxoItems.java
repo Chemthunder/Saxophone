@@ -6,6 +6,9 @@ import net.chemthunder.saxophone.impl.block.item.CovetousMonolithBlockItem;
 import net.chemthunder.saxophone.impl.item.*;
 import net.minecraft.item.Item;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoItems {
     ItemRegistrant ITEMS = new ItemRegistrant(Saxophone.MOD_ID);
 

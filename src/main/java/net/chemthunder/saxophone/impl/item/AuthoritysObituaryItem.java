@@ -22,6 +22,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public class AuthoritysObituaryItem extends SaxophoneItem {
     public AuthoritysObituaryItem(Settings settings) {
         super(settings.component(SaxoDataComponents.CHARGES, 3));

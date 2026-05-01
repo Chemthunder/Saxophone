@@ -17,6 +17,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * @author Chemthunder
+ */
 public class CovetousMonolithBlock extends BlockWithEntity {
     public static final MapCodec<CovetousMonolithBlock> CODEC = createCodec(CovetousMonolithBlock::new);
 

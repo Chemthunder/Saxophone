@@ -10,6 +10,9 @@ import net.minecraft.registry.tag.TagKey;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoDamageTypeTags {
     Map<TagKey<DamageType>, String> DAMAGE_TAGS = new HashMap<>();
 

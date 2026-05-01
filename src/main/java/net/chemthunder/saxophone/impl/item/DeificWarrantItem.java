@@ -6,6 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
+/**
+ * @author Chemthunder
+ */
 public class DeificWarrantItem extends SaxophoneItem {
     public DeificWarrantItem(Settings settings) {
         super(settings);

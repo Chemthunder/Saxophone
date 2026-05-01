@@ -12,6 +12,9 @@ import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoParticles {
     ParticleType<ShockwaveParticleEffect> SHOCKWAVE = create("shockwave", FabricParticleTypes.complex(true, ShockwaveParticleEffect.CODEC, ShockwaveParticleEffect.PACKET_CODEC));
 

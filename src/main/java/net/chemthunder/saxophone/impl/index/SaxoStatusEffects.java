@@ -6,6 +6,9 @@ import net.chemthunder.saxophone.impl.effect.SaxophoneBackgroundStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoStatusEffects {
     StatusEffectRegistrant STATUS_EFFECTS = new StatusEffectRegistrant(Saxophone.MOD_ID);
 

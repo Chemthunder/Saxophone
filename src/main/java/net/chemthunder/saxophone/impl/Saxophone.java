@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author Chemthunder
+ * @author JadedChara
+ */
 public class Saxophone implements ModInitializer {
 
     //~~~~~~~~~~~~~~~~~
@@ -74,10 +78,18 @@ public class Saxophone implements ModInitializer {
         return Identifier.of(MOD_ID, path);
     }
 
+    /**
+     * Checks if an entity is Scarelt / Ivory / Netvision
+     * @param entity The entity to check.
+     */
     public static boolean isScarlet(Entity entity) {
         return entity != null && (entity.getUuid().equals(UUID.fromString("c38f83cf-2723-497a-9327-f5937fb2fc08")))|| (isChem(entity));
     }
 
+    /**
+     * Checks if an entity is Chemthunder.
+     * @param entity The entity to check.
+     */
     public static boolean isChem(Entity entity) {
         return entity != null && (entity.getUuid().equals(UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f")));
     }

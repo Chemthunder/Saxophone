@@ -6,6 +6,9 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
 
+/**
+ * @author Chemthunder
+ */
 public class SaxophoneBackgroundStatusEffect extends StatusEffect implements StatusEffectBackground {
     public SaxophoneBackgroundStatusEffect(StatusEffectCategory category, int color) {
         super(category, color);

@@ -9,6 +9,9 @@ import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
+/**
+ * @author Chemthunder
+ */
 public class InsistenceComponent implements AutoSyncedComponent, CommonTickingComponent {
     public static final ComponentKey<InsistenceComponent> KEY = MiscUtils.getOrCreateKey(Saxophone.id("insistence"), InsistenceComponent.class);
 

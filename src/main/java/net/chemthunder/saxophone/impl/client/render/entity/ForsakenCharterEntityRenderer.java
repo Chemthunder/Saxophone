@@ -14,6 +14,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.RotationAxis;
 
+/**
+ * @author Chemthunder
+ */
 public class ForsakenCharterEntityRenderer extends EntityRenderer<ForsakenCharterEntity> {
     public ForsakenCharterEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);

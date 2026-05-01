@@ -11,6 +11,9 @@ import net.minecraft.util.math.Vec3d;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
+/**
+ * @author AcoYT
+ */
 public class ShockwaveParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteWithAge;
     private final Quaternionf quaternion;

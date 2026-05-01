@@ -18,6 +18,9 @@ import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
+/**
+ * @author Chemthunder
+ */
 public class RevenantDeathAnimationComponent implements AutoSyncedComponent, CommonTickingComponent {
     public static final ComponentKey<RevenantDeathAnimationComponent> KEY = MiscUtils.getOrCreateKey(Saxophone.id("revenant_death"), RevenantDeathAnimationComponent.class);
 

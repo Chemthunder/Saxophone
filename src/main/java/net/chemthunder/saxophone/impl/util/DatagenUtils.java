@@ -8,6 +8,10 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 
 // Impl from Diversity by MT-PEAK!
+/**
+ * @author MT-PEAK!
+ * @author Chemthunder
+ */
 public class DatagenUtils {
     public class Lang {
         public static void registerDamageType(FabricLanguageProvider.TranslationBuilder builder, RegistryKey<DamageType> registryKey, String normal, String item, String player) {

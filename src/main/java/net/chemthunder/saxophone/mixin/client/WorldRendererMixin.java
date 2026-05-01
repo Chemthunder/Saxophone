@@ -10,6 +10,9 @@ import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+/**
+ * @author Chemthunder
+ */
 @Mixin(WorldRenderer.class)
 public abstract class WorldRendererMixin {
     @WrapOperation(

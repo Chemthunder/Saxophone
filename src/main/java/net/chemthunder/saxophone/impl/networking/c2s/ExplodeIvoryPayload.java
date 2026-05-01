@@ -9,6 +9,9 @@ import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
 
+/**
+ * @author Chemthunder
+ */
 public record ExplodeIvoryPayload() implements CustomPayload {
     public static final CustomPayload.Id<ExplodeIvoryPayload> ID = new CustomPayload.Id<>(Saxophone.id("explode_ivory"));
     public static final PacketCodec<RegistryByteBuf, ExplodeIvoryPayload> CODEC = PacketCodec.unit(new ExplodeIvoryPayload());

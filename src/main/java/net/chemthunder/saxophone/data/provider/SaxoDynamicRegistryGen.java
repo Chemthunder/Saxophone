@@ -7,6 +7,9 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author Chemthunder
+ */
 public class SaxoDynamicRegistryGen extends FabricDynamicRegistryProvider {
     public SaxoDynamicRegistryGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -17,6 +20,6 @@ public class SaxoDynamicRegistryGen extends FabricDynamicRegistryProvider {
     }
 
     public String getName() {
-        return "saxophone_dynamic";
+        return "Saxophone Dynamic Resources";
     }
 }

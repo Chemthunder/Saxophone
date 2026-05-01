@@ -31,6 +31,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public class WrathOfTwilightItem extends SaxophoneItem implements ModelVaryingItem, CustomHitParticleItem {
     public static final SweepParticleEffect[] EFFECTS = new SweepParticleEffect[]{
             new SweepParticleEffect(0xd70048, 0x0c0105)

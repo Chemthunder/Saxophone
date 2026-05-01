@@ -4,6 +4,9 @@ import net.acoyt.acornlib.api.registrants.SoundEventRegistrant;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.minecraft.sound.SoundEvent;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoSoundEvents {
     SoundEventRegistrant SOUND_EVENTS = new SoundEventRegistrant(Saxophone.MOD_ID);
 

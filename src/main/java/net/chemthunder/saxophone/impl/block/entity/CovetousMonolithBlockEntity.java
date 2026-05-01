@@ -19,11 +19,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public class CovetousMonolithBlockEntity extends BlockEntity {
     public int ageTicks = 0;
     public int radius = 0;
 
-    private final int getMaxRadius = 75;
+    private final int MAX_RADIUS = 75;
     private final int secondsToFinalize = 300;
 
     public CovetousMonolithBlockEntity(BlockPos pos, BlockState state) {
@@ -33,11 +36,11 @@ public class CovetousMonolithBlockEntity extends BlockEntity {
     public static void tick(World world, BlockPos pos, BlockState state, @NotNull CovetousMonolithBlockEntity monolith) {
         monolith.ageTicks++;
 
-        if (monolith.ageTicks < monolith.getMaxRadius) {
+        if (monolith.ageTicks < monolith.MAX_RADIUS) {
             monolith.radius++;
         }
 
-        if (monolith.ageTicks == monolith.getMaxRadius) {
+        if (monolith.ageTicks == monolith.MAX_RADIUS) {
             world.getPlayers().forEach(player -> {
                 if (player instanceof ScreenShaker shaker) {
                     shaker.addScreenShake(3.0f, 20);

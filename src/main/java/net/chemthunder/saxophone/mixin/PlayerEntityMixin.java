@@ -20,6 +20,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * @author Chemthunder
+ */
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin {
     @Inject(method = "shouldRenderName", at = @At("HEAD"), cancellable = true)

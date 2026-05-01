@@ -10,11 +10,15 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 
+/**
+ * @author Chemthunder
+ */
 public class SaxophoneDataGen implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
         pack.addProvider(SaxoDynamicRegistryGen::new);
+        
         pack.addProvider(SaxoLangGen::new);
         pack.addProvider(SaxoModelGen::new);
         pack.addProvider(SaxoDamageTypeTagGen::new);

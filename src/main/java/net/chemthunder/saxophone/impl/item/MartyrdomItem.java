@@ -32,6 +32,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public class MartyrdomItem extends SaxophoneItem implements CustomHitSoundItem, CritEffectItem, ModelVaryingItem {
     public MartyrdomItem(Settings settings) {
         super(settings);
@@ -75,6 +78,7 @@ public class MartyrdomItem extends SaxophoneItem implements CustomHitSoundItem, 
     public void critEffect(PlayerEntity playerEntity, ItemStack itemStack, Entity entity) {
         playerEntity.setVelocity(playerEntity.getRotationVec(0).multiply(0.3f));
         playerEntity.velocityModified = true;
+
         if (playerEntity instanceof ScreenShaker shaker) {
             shaker.addScreenShake(0.4f, 4);
         }
@@ -107,7 +111,6 @@ public class MartyrdomItem extends SaxophoneItem implements CustomHitSoundItem, 
                     0,
                     0.2f
             );
-
 
             if (target instanceof PlayerEntity) {
                 serverWorld.getPlayers().forEach(serverPlayer -> {

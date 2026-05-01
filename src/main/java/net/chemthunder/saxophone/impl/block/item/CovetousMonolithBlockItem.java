@@ -8,6 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
+/**
+ * @author Chemthunder
+ */
 public class CovetousMonolithBlockItem extends BlockItem implements ColorableItem {
     public CovetousMonolithBlockItem(Settings settings) {
         super(SaxoBlocks.COVETOUS_MONOLITH, settings);
@@ -19,7 +22,10 @@ public class CovetousMonolithBlockItem extends BlockItem implements ColorableIte
     public int endColor(ItemStack itemStack) {
         return 0xFF8e1a41;
     }
-    public int backgroundColor(ItemStack itemStack) {return 0xFF1c0810;}
+
+    public int backgroundColor(ItemStack itemStack) {
+        return 0xFF1c0810;
+    }
 
     public Text getName(ItemStack stack) {
         MutableText text = Text.translatable("block.saxophone.covetous_monolith");

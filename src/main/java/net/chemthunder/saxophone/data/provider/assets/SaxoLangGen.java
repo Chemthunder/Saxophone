@@ -11,6 +11,9 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author Chemthunder
+ */
 public class SaxoLangGen extends FabricLanguageProvider {
     public SaxoLangGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
@@ -45,9 +48,5 @@ public class SaxoLangGen extends FabricLanguageProvider {
         // Keybindings
         translationBuilder.add("category.saxophone", "Saxophone");
         translationBuilder.add("key.saxophone.explode_ivory", "Cause Scarlet to detonate");
-
-        // World Events!
-        translationBuilder.add("event.saxophone.night_eternal", "A Night Eternal");
-        translationBuilder.add("event.saxophone.world_gone_beautiful", "The World Gone Beautiful");
     }
 }

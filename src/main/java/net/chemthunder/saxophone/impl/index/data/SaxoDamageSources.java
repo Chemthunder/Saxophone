@@ -9,6 +9,9 @@ import net.minecraft.registry.RegistryKeys;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoDamageSources {
     List<DamageSourceData> DATA = new ArrayList<>();
 
@@ -30,4 +33,3 @@ public interface SaxoDamageSources {
 
     record DamageSourceData(RegistryKey<DamageType> key, String name, float exhaustion) {}
 }
-

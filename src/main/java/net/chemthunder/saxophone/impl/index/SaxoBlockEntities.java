@@ -6,6 +6,9 @@ import net.chemthunder.saxophone.impl.block.entity.CovetousMonolithBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
 
+/**
+ * @author Chemthunder
+ */
 @SuppressWarnings("deprecation")
 public interface SaxoBlockEntities {
     BlockEntityTypeRegistrant BLOCK_ENTITIES = new BlockEntityTypeRegistrant(Saxophone.MOD_ID);

@@ -10,6 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
+/**
+ * @author Chemthunder
+ */
 public interface SaxoItemGroups {
     ItemGroupRegistrant ITEM_GROUPS = new ItemGroupRegistrant(Saxophone.MOD_ID);
 

@@ -8,6 +8,9 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 
+/**
+ * @author Chemthunder
+ */
 public class SaxoModelGen extends FabricModelProvider {
     public SaxoModelGen(FabricDataOutput output) {
         super(output);

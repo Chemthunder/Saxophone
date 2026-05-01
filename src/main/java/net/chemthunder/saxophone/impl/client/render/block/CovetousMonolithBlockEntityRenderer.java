@@ -13,11 +13,12 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 
+/**
+ * @author Chemthunder
+ */
 @Environment(EnvType.CLIENT)
 public class CovetousMonolithBlockEntityRenderer implements BlockEntityRenderer<CovetousMonolithBlockEntity> {
-    public CovetousMonolithBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
-        //
-    }
+    public CovetousMonolithBlockEntityRenderer(BlockEntityRendererFactory.Context context) {}
 
     public void render(CovetousMonolithBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();

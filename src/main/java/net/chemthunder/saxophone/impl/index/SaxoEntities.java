@@ -8,6 +8,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 
+/**
+ * @author Chemthunder
+ */
 @SuppressWarnings("deprecation")
 public interface SaxoEntities {
     EntityTypeRegistrant ENTITIES = new EntityTypeRegistrant<>(Saxophone.MOD_ID);

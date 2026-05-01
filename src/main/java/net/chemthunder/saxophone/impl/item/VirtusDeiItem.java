@@ -16,6 +16,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public class VirtusDeiItem extends SaxophoneItem {
     public VirtusDeiItem(Settings settings) {
         super(settings);

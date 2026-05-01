@@ -3,6 +3,9 @@ package net.chemthunder.saxophone.impl.component;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+/**
+ * @author Chemthunder
+ */
 public record ContractComponent(String signerName, boolean isSigned, boolean isAvarice) {
     public static final Codec<ContractComponent> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(

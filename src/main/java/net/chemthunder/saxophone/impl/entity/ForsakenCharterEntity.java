@@ -13,6 +13,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public class ForsakenCharterEntity extends Entity {
     public ForsakenCharterEntity(EntityType<?> type, World world) {
         super(type, world);
@@ -22,7 +25,6 @@ public class ForsakenCharterEntity extends Entity {
 
     public void tick() {
         tickBorders();
-        super.tick();
     }
 
     private void tickBorders() {

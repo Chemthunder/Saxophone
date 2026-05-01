@@ -13,6 +13,9 @@ import net.minecraft.registry.tag.TagKey;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author Chemthunder
+ */
 public class SaxoDamageTypeTagGen extends FabricTagProvider<DamageType> {
     public SaxoDamageTypeTagGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, RegistryKeys.DAMAGE_TYPE, registriesFuture);

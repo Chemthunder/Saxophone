@@ -24,40 +24,84 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ * @author AcoYT
+ */
 public class ModUtils {
+    public static RegistryKey<World> asphodelKey = RegistryKey.of(RegistryKeys.WORLD, Saxophone.id("asphodel"));
+
+    /**
+     * Checks if a given player is Avarice.
+     * @param player The player to check.
+     */
     public static boolean isAvarice(PlayerEntity player) {
         return AvariceComponent.KEY.get(player).isAvarice();
     }
+
+    /**
+     * Checks if a given entity is Avarice.
+     * @param living The entity to check.
+     */
     public static boolean isAvarice(LivingEntity living) {
         return living instanceof PlayerEntity player && AvariceComponent.KEY.get(player).isAvarice();
     }
 
+    /**
+     * Applies the mod name effect.
+     * @param text The text to apply to.
+     */
     public static Style nameEffect(MutableText text) {
         return TextEffectManager.withEffect(text.getStyle(), HibiscusPresetEffects.DOUBLE_LERP_WAVE_EFFECT, TextEffectManager.getEffect(HibiscusPresetEffects.DOUBLE_LERP_WAVE_EFFECT));
     }
 
+    /**
+     * Applies the mod name effect.
+     * @param text The text to apply to.
+     */
     public static Style nameEffect(Text text) {
         return TextEffectManager.withEffect(text.getStyle(), HibiscusPresetEffects.DOUBLE_LERP_WAVE_EFFECT, TextEffectManager.getEffect(HibiscusPresetEffects.DOUBLE_LERP_WAVE_EFFECT));
     }
 
+    /**
+     * Gets the entities around a specified entity.
+     * @param living The entity to check around.
+     * @param expansion The size of the area to check.
+     */
     public static List<Entity> getEntitiesAroundEntity(Entity living, int expansion) {
         return living.getWorld().getEntitiesByClass(Entity.class, new Box(living.getBlockPos()).expand(expansion), entity -> true);
     }
 
+    /**
+     * Gets the entities around a specified BlockPos.
+     * @param pos The position to check.
+     * @param world The world to use.
+     * @param expansion The size of the area to check.
+     */
     public static List<Entity> getEntitiesAroundPos(BlockPos pos, World world, int expansion) {
         return world.getEntitiesByClass(Entity.class, new Box(pos).expand(expansion), entity -> true);
     }
 
-    public static RegistryKey<World> asphodelKey = RegistryKey.of(RegistryKeys.WORLD, Saxophone.id("asphodel"));
-
+    /**
+     * Checks if an entity is in Asphodel.
+     * @param living The entity to check.
+     */
     public static boolean isInAsphodel(LivingEntity living) {
         return living != null && living.getWorld().getRegistryKey() == asphodelKey;
     }
 
+    /**
+     * Gets the current Asphodel instance.
+     * @param server The server to check.
+     */
     public static ServerWorld getAsphodel(MinecraftServer server) {
         return server.getWorld(asphodelKey);
     }
 
+    /**
+     * Teleports an entity to Asphodel.
+     * @param living The entity to teleport.
+     */
     public static void teleportToAsphodel(LivingEntity living) {
         Vec3d pos = new Vec3d(living.getX(), -319, living.getZ());
 
@@ -66,18 +110,20 @@ public class ModUtils {
         }
     }
 
+    /**
+     * Checks if a player has a specified item in either of their hands.
+     * @param player The player to check.
+     * @param item The item to check for.
+     */
     public static boolean hasItemInHands(PlayerEntity player, Item item) {
         return player.getMainHandStack().isOf(item) || player.getOffHandStack().isOf(item);
     }
 
+    /**
+     * Checks if a player is viable for permakill.
+     * @param entity The entity to check.
+     */
     public static boolean isViableForSaxophone(PlayerEntity entity) {
         return !ModUtils.isAvarice(entity) || !entity.getInventory().contains(SaxoItems.DEIFIC_WARRANT.getDefaultStack());
-    }
-
-    // VERY IMPORTANT
-    // DO NOT DELETE
-    // ISTFG
-    public static boolean isViableForSex(Entity entity) {
-        return entity.age > 16;
     }
 }

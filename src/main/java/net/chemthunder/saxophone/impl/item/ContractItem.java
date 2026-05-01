@@ -28,6 +28,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public class ContractItem extends SaxophoneItem implements ModelVaryingItem {
     public ContractItem(Settings settings) {
         super(settings.component(SaxoDataComponents.CONTRACT, new ContractComponent("", false, false)));
@@ -43,6 +46,7 @@ public class ContractItem extends SaxophoneItem implements ModelVaryingItem {
                 if (!component.isSigned()) {
                     stack.set(SaxoDataComponents.CONTRACT, new ContractComponent(user.getNameForScoreboard(), true, canApplyAvarice));
                     Saxophone.ALL_CONTRACTED_PLAYERS.add(user.getUuid());
+
                     if (world.isClient) {
                         user.swingHand(hand);
                         user.playSoundToPlayer(SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, SoundCategory.PLAYERS, 1, 1);
@@ -86,13 +90,10 @@ public class ContractItem extends SaxophoneItem implements ModelVaryingItem {
     public Text getName(ItemStack stack) {
         var comp = stack.get(SaxoDataComponents.CONTRACT);
         MutableText text;
+
         if (comp != null) {
             if (!comp.isAvarice()) {
-                if (!comp.isSigned()) {
-                    text = Text.translatable("item.saxophone.contract");
-                } else {
-                    text = Text.translatable("item.saxophone.contract_signed");
-                }
+                text = Text.translatable(comp.isSigned() ? "item.saxophone.contract_signed" : "item.saxophone.contract");
                 return text.setStyle(ModUtils.nameEffect(text)).withColor(0xd70048);
             } else {
                 if (!comp.isSigned()) {
