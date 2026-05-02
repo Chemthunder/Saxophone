@@ -26,6 +26,10 @@ public abstract class PlayerEntityRendererMixin {
         if (ModUtils.isAvarice(player)) {
             cir.setReturnValue(Saxophone.id("textures/entity/avarice.png"));
         }
+
+        if (ModUtils.isEos(player)) {
+            cir.setReturnValue(Saxophone.id("textures/entity/eos.png"));
+        }
     }
 
     @Redirect(
@@ -44,6 +48,17 @@ public abstract class PlayerEntityRendererMixin {
                     defaultTextures.capeTexture(),
                     defaultTextures.elytraTexture(),
                     SkinTextures.Model.WIDE,
+                    defaultTextures.secure()
+            );
+        }
+
+        if (ModUtils.isEos(instance)) {
+            return new SkinTextures(
+                    Saxophone.id("textures/entity/eos.png"),
+                    defaultTextures.textureUrl(),
+                    defaultTextures.capeTexture(),
+                    defaultTextures.elytraTexture(),
+                    SkinTextures.Model.SLIM,
                     defaultTextures.secure()
             );
         }

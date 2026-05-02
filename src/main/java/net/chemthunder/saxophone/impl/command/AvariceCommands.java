@@ -3,7 +3,7 @@ package net.chemthunder.saxophone.impl.command;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import net.chemthunder.saxophone.impl.Saxophone;
-import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
+import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
 import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -13,7 +13,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
 /**
@@ -83,11 +86,19 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                 }))
                                 .then(CommandManager.literal("cease").requires(AvariceCommands::isScarlet).executes(context -> {
                                     World world = context.getSource().getWorld();
+                                    PlayerEntity src = context.getSource().getPlayer();
 
                                     if (world != null) {
                                         AvariceEventComponent event = AvariceEventComponent.KEY.get(world);
 
-                                        event.ceaseEvent();
+                                        if (event.getState()) {
+                                            event.ceaseEvent();
+                                        } else {
+                                            if (src != null) {
+                                                src.playSoundToPlayer(SoundEvents.BLOCK_ANVIL_DESTROY, SoundCategory.MASTER, 1, 1);
+                                                src.sendMessage(Text.literal("don't be a fucking dumbass next time -chem").formatted(Formatting.RED));
+                                            }
+                                        }
                                     }
                                     return Command.SINGLE_SUCCESS;
                                 }))
@@ -115,7 +126,7 @@ public class AvariceCommands implements CommandRegistrationCallback {
         );
     }
 
-    private static boolean isScarlet(ServerCommandSource source) { // If command block, is ETHOS, or is opped
+    private static boolean isScarlet(ServerCommandSource source) {
         return source.getPlayer() == null || Saxophone.isScarlet(source.getEntity());
     }
 }

@@ -19,7 +19,8 @@
   "entrypoints": {
     "main": [
       "net.chemthunder.saxophone.impl.Saxophone",
-      "net.chemthunder.reverence.impl.Reverence"
+      "net.chemthunder.reverence.impl.Reverence",
+      "net.chemthunder.oracle.impl.Oracle"
     ],
     "client": [
       "net.chemthunder.saxophone.impl.SaxophoneClient"
@@ -43,6 +44,8 @@
   "custom": {
     "cardinal-components": [
       "saxophone:avarice",
+      "saxophone:eos",
+
       "saxophone:forsaken_charter",
       "saxophone:revenant_death",
       "saxophone:insistence",

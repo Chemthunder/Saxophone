@@ -31,6 +31,8 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
     private double savedBorderSize = 0;
     private double savedCenterX = 0;
     private double savedCenterZ = 0;
+
+    private boolean canUseDomainExpansion = false;
     
     public AvariceEventComponent(World world) {
         this.world = world;
@@ -48,6 +50,8 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
         this.savedBorderSize = nbtCompound.getDouble("SavedBorderSize");
         this.savedCenterX = nbtCompound.getDouble("SavedCenterX");
         this.savedCenterZ = nbtCompound.getDouble("SavedCenterZ");
+
+        this.canUseDomainExpansion = nbtCompound.getBoolean("CanUseDomainExpansion");
     }
 
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
@@ -58,6 +62,8 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
         nbtCompound.putDouble("SavedBorderSize", savedBorderSize);
         nbtCompound.putDouble("SavedCenterX", savedCenterX);
         nbtCompound.putDouble("SavedCenterZ", savedCenterZ);
+
+        nbtCompound.putBoolean("CanUseDomainExpansion", canUseDomainExpansion);
     }
 
     public void setState(boolean bl) {
@@ -131,6 +137,15 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
         border.setCenter(this.savedCenterX, this.savedCenterZ);
         border.interpolateSize(border.getSize(), this.savedBorderSize, 60);
 
+        this.sync();
+    }
+
+    public boolean isCanUseDomainExpansion() {
+        return this.canUseDomainExpansion;
+    }
+
+    public void setCanUseDomainExpansion(boolean bl) {
+        this.canUseDomainExpansion = bl;
         this.sync();
     }
 

@@ -27,6 +27,7 @@
     "client.InGameHudMixin",
     "client.LivingEntityRendererMixin",
     "client.PlayerEntityRendererMixin",
+    "client.PlayerListHudMixin",
     "client.WorldRendererMixin"
   ]
 }

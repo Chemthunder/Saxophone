@@ -1,7 +1,7 @@
 package net.chemthunder.saxophone.mixin;
 
 import net.chemthunder.saxophone.impl.Saxophone;
-import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
+import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.entity.InsistenceComponent;
 import net.chemthunder.saxophone.impl.cca.entity.RevenantDeathAnimationComponent;
 import net.chemthunder.saxophone.impl.item.AuthoritysObituaryItem;

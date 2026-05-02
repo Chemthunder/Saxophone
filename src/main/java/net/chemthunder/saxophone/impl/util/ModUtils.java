@@ -3,7 +3,8 @@ package net.chemthunder.saxophone.impl.util;
 import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import net.chemthunder.saxophone.impl.Saxophone;
-import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
+import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
+import net.chemthunder.saxophone.impl.cca.deity.EosComponent;
 import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
 import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.minecraft.entity.Entity;
@@ -34,6 +35,10 @@ public class ModUtils {
 
     public static boolean isAvarice(Entity entity) {
         return entity instanceof PlayerEntity player && AvariceComponent.KEY.get(player).isAvarice();
+    }
+
+    public static boolean isEos(Entity entity) {
+        return entity instanceof PlayerEntity player && EosComponent.KEY.get(player).isEos();
     }
 
     /**

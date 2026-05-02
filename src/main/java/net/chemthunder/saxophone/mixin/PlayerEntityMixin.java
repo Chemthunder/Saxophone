@@ -2,7 +2,8 @@ package net.chemthunder.saxophone.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.chemthunder.saxophone.impl.Saxophone;
-import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
+import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
+import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
 import net.chemthunder.saxophone.impl.index.tag.SaxoDamageTypeTags;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.block.BlockState;
@@ -37,6 +38,9 @@ public abstract class PlayerEntityMixin {
         if (ModUtils.isAvarice(player)) {
             return Text.literal("Avarice").withColor(0xff003c).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED);
         }
+        if (ModUtils.isEos(player)) {
+            return Text.literal("E").withColor(0xa16252).append(Text.literal("o").withColor(0xc08f75).append(Text.literal("s").withColor(0xffca8e))).formatted(Formatting.ITALIC);
+        }
         if(Saxophone.isNightstrike(player) && player.getWorld().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)){
             return Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC);
         }
@@ -56,15 +60,27 @@ public abstract class PlayerEntityMixin {
 
     @Inject(method="isInvulnerableTo",at=@At("TAIL"),cancellable = true)
     private void saxophone$negateDamageAvarice(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir){
-        if (AvariceComponent.KEY.get(this).isInvincible()) {
-            cir.setReturnValue(true);
+        if (!damageSource.isOf(SaxoDamageSources.IVORY_EXPLODE)) {
+            if (AvariceComponent.KEY.get(this).isInvincible()) {
+                cir.setReturnValue(true);
+            }
         }
     }
 
     @Inject(method = "damage", at = @At(value = "HEAD"), cancellable = true)
     private void saxophone$negateDamageAvarice(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         PlayerEntity player = (PlayerEntity) (Object) this;
-        if (AvariceComponent.KEY.get(player).isInvincible()) {
+        if (!source.isOf(SaxoDamageSources.IVORY_EXPLODE)) {
+            if (AvariceComponent.KEY.get(player).isInvincible()) {
+                cir.setReturnValue(false);
+            }
+        }
+    }
+
+    @Inject(method = "damage", at = @At(value = "HEAD"), cancellable = true)
+    private void saxophone$negateDamageEos(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        PlayerEntity player = (PlayerEntity) (Object) this;
+        if (ModUtils.isEos(player)) {
             cir.setReturnValue(false);
         }
     }

@@ -3,6 +3,7 @@ package net.chemthunder.saxophone.impl.cca.entity;
 import com.nitron.nitrogen.util.interfaces.ScreenShaker;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.saxophone.impl.Saxophone;
+import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.client.particle.ShockwaveParticleEffect;
 import net.chemthunder.saxophone.impl.index.SaxoParticles;
 import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;

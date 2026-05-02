@@ -1,4 +1,4 @@
-package net.chemthunder.saxophone.impl.cca.entity;
+package net.chemthunder.saxophone.impl.cca.deity;
 
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.saxophone.impl.Saxophone;
