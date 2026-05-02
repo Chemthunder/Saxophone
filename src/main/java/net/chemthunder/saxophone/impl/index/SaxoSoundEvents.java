@@ -14,6 +14,7 @@ public interface SaxoSoundEvents {
     SoundEvent MARTYRDOM_SWING = SOUND_EVENTS.register("martyrdom_swing");
     SoundEvent BELL_TOLL = SOUND_EVENTS.register("bell_toll");
     SoundEvent COVETOUS_PLACE = SOUND_EVENTS.register("covetous_place");
+    SoundEvent FOLLY_BEGIN = SOUND_EVENTS.register("folly_begin");
 
     static void init() {}
 }

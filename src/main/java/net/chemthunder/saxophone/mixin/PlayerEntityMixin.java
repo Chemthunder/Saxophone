@@ -1,6 +1,5 @@
 package net.chemthunder.saxophone.mixin;
 
-import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
@@ -9,7 +8,6 @@ import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;

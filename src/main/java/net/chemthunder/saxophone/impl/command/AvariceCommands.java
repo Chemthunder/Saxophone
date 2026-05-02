@@ -1,15 +1,15 @@
 package net.chemthunder.saxophone.impl.command;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
-import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
-import net.chemthunder.saxophone.impl.cca.world.MasqueradeEventComponent;
-import net.chemthunder.saxophone.impl.index.SaxoItems;
+import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
+import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -22,8 +22,8 @@ import net.minecraft.world.World;
 public class AvariceCommands implements CommandRegistrationCallback {
     public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
         commandDispatcher.register(
-                CommandManager.literal("avarice::apply")
-                        .executes(context -> {
+                CommandManager.literal("avarice")
+                        .then(CommandManager.literal("apply").executes(context -> {
                             PlayerEntity player = context.getSource().getPlayer();
                             if (player != null) {
                                 AvariceComponent component = AvariceComponent.KEY.get(player);
@@ -31,119 +31,91 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                 component.setAvarice(!component.isAvarice());
                                 context.getSource().sendFeedback(() -> Text.literal("Set AvariceState to " + component.isAvarice()), false);
                             }
-                            return 1;
-                        }).requires(
-                                source -> {
-                                    /*if(source.getServer().getGameRules().getBoolean(Saxophone
-                                    .allowNightstrikeShenanigans)){
-                                        return Saxophone.isNightstrike(source.getEntity());
-                                    }*/
-                                    return Saxophone.isScarlet(source.getEntity());
-                                }
-                        )
-        );
+                            return Command.SINGLE_SUCCESS;
+                        }).requires(AvariceCommands::isScarlet))
 
-        commandDispatcher.register(
-                CommandManager.literal("avarice::toggleInvisibility")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                AvariceComponent component = AvariceComponent.KEY.get(player);
+                        .then(CommandManager.literal("toggle")
+                                .then(CommandManager.literal("invisibility").executes(context -> {
+                                    PlayerEntity player = context.getSource().getPlayer();
+                                    if (player != null) {
+                                        AvariceComponent component = AvariceComponent.KEY.get(player);
 
-                                component.setInvisible(!component.isInvisible());
-                                context.getSource().sendFeedback(() -> Text.literal("Set Invisibility to " + component.isInvisible()), false);
-                            }
-                            return 1;
-                        }).requires(
-                                source -> {
-                                    /*if(source.getServer().getGameRules().getBoolean(Saxophone
-                                    .allowNightstrikeShenanigans)){
-                                        return Saxophone.isNightstrike(source.getEntity());
-                                    }*/
-                                    return Saxophone.isScarlet(source.getEntity());
-                                }
-                        )
-        );
-
-        commandDispatcher.register(
-                CommandManager.literal("avarice::toggleInvulnerability")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                AvariceComponent component = AvariceComponent.KEY.get(player);
-
-                                component.setInvincible(!component.isInvincible());
-                                context.getSource().sendFeedback(() -> Text.literal("Set Invulnerability to " + component.isInvincible()), false);
-                            }
-                            return 1;
-                        }).requires(
-                                source -> {
-                                    /*if(source.getServer().getGameRules().getBoolean(Saxophone
-                                    .allowNightstrikeShenanigans)){
-                                        return Saxophone.isNightstrike(source.getEntity());
-                                    }*/
-                                    return Saxophone.isScarlet(source.getEntity());
-                                }
-                        )
-        );
-
-        commandDispatcher.register(
-                CommandManager.literal("avarice::toggleTransparency")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                AvariceComponent component = AvariceComponent.KEY.get(player);
-
-                                component.setTransparent(!component.isTransparent());
-                                context.getSource().sendFeedback(() -> Text.literal("Set Transparency to " + component.isTransparent()), false);
-                            }
-                            return 1;
-                        }).requires(
-                                source -> {
-                                    /*if(source.getServer().getGameRules().getBoolean(Saxophone
-                                    .allowNightstrikeShenanigans)){
-                                        return Saxophone.isNightstrike(source.getEntity());
-                                    }*/
-                                    return Saxophone.isScarlet(source.getEntity());
-                                }
-                        )
-        );
-
-        commandDispatcher.register(
-                CommandManager.literal("avarice::masquerade")
-                        .executes(context -> {
-                            PlayerEntity player = context.getSource().getPlayer();
-                            if (player != null) {
-                                World world = player.getWorld();
-
-                                MasqueradeEventComponent eventComponent = MasqueradeEventComponent.KEY.get(world);
-
-                                eventComponent.setState(!eventComponent.getState());
-                                context.getSource().sendFeedback(() -> Text.literal("Set Masquerade to " + eventComponent.getState()), false);
-                            }
-                            return 1;
-                        }).requires(serverCommandSource -> Saxophone.isScarlet(serverCommandSource.getEntity()))
-        );
-
-        for (Item item : SaxoItems.ITEMS.toRegister) {
-            commandDispatcher.register(
-                    CommandManager.literal("avarice::give::" + MiscUtils.formatString(item.toString().replaceAll("saxophone:", "")).replaceAll(" ", ""))
-                            .executes(context -> {
-                                PlayerEntity player = context.getSource().getPlayer();
-                                if (player != null) {
-                                    player.giveItemStack(new ItemStack(item));
-                                }
-                                return 1;
-                            }).requires(
-                                    source -> {
-                                        /*if(source.getServer().getGameRules().getBoolean(Saxophone
-                                        .allowNightstrikeShenanigans)){
-                                            return Saxophone.isNightstrike(source.getEntity());
-                                        }*/
-                                        return Saxophone.isScarlet(source.getEntity());
+                                        component.setInvisible(!component.isInvisible());
+                                        context.getSource().sendFeedback(() -> Text.literal("Set Invisibility to " + component.isInvisible()), false);
                                     }
-                            )
-            );
-        }
+                                    return Command.SINGLE_SUCCESS;
+                                })).requires(AvariceCommands::isScarlet)
+
+                                .then(CommandManager.literal("invincibility").executes(context -> {
+                                    PlayerEntity player = context.getSource().getPlayer();
+                                    if (player != null) {
+                                        AvariceComponent component = AvariceComponent.KEY.get(player);
+
+                                        component.setInvincible(!component.isInvincible());
+                                        context.getSource().sendFeedback(() -> Text.literal("Set Invulnerability to " + component.isInvincible()), false);
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                })).requires(AvariceCommands::isScarlet)
+                        ).requires(AvariceCommands::isScarlet)
+
+                        .then(CommandManager.literal("give").requires(AvariceCommands::isScarlet).then(CommandManager.argument("item", ItemArgumentType.itemStack(commandRegistryAccess)).executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            ItemStack stack = ItemStackArgumentType.getItemStackArgument(context, "item").createStack(1, false);
+
+                            if (player != null) {
+                                player.giveItemStack(stack);
+                            }
+
+                            return Command.SINGLE_SUCCESS;
+                        })).requires(AvariceCommands::isScarlet)).requires(AvariceCommands::isScarlet)
+
+                        .then(CommandManager.literal("folly").requires(AvariceCommands::isScarlet)
+                                .then(CommandManager.literal("begin").requires(AvariceCommands::isScarlet).executes(context -> {
+                                    World world = context.getSource().getWorld();
+                                    PlayerEntity player = context.getSource().getPlayer();
+
+                                    if (world != null && player != null) {
+                                        AvariceEventComponent event = AvariceEventComponent.KEY.get(world);
+
+                                        event.beginEvent(player);
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                }))
+                                .then(CommandManager.literal("cease").requires(AvariceCommands::isScarlet).executes(context -> {
+                                    World world = context.getSource().getWorld();
+
+                                    if (world != null) {
+                                        AvariceEventComponent event = AvariceEventComponent.KEY.get(world);
+
+                                        event.ceaseEvent();
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                }))
+                                .then(CommandManager.literal("sanctuary").requires(AvariceCommands::isScarlet).executes(context -> {
+                                    World world = context.getSource().getWorld();
+
+                                    if (world != null) {
+                                        AvariceEventComponent event = AvariceEventComponent.KEY.get(world);
+
+                                        event.setSanctuary(!event.getSanctuary());
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                }))
+                                .then(CommandManager.literal("shade").requires(AvariceCommands::isScarlet).executes(context -> {
+                                    World world = context.getSource().getWorld();
+
+                                    if (world != null) {
+                                        AvariceEventComponent event = AvariceEventComponent.KEY.get(world);
+
+                                        event.setShade(!event.getShade());
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                }))
+                        )
+        );
+    }
+
+    private static boolean isScarlet(ServerCommandSource source) { // If command block, is ETHOS, or is opped
+        return source.getPlayer() == null || Saxophone.isScarlet(source.getEntity());
     }
 }

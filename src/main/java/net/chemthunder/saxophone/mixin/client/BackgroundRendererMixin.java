@@ -1,7 +1,6 @@
 package net.chemthunder.saxophone.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.chemthunder.saxophone.impl.cca.world.MasqueradeEventComponent;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BackgroundRenderer;
@@ -27,18 +26,6 @@ public abstract class BackgroundRendererMixin {
             RenderSystem.setShaderFogShape(FogShape.SPHERE);
             RenderSystem.setShaderFogColor(0, 0, 0);
             ci.cancel();
-        }
-
-        if (client.world != null) {
-            MasqueradeEventComponent eventComponent = MasqueradeEventComponent.KEY.get(client.world);
-
-            if (eventComponent.getState()) {
-                RenderSystem.setShaderFogStart(1);
-                RenderSystem.setShaderFogEnd(6);
-                RenderSystem.setShaderFogShape(FogShape.SPHERE);
-                RenderSystem.setShaderFogColor(0, 0, 0);
-                ci.cancel();
-            }
         }
     }
 }

@@ -4,6 +4,7 @@ import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
+import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
 import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -31,20 +32,8 @@ import java.util.List;
 public class ModUtils {
     public static RegistryKey<World> asphodelKey = RegistryKey.of(RegistryKeys.WORLD, Saxophone.id("asphodel"));
 
-    /**
-     * Checks if a given player is Avarice.
-     * @param player The player to check.
-     */
-    public static boolean isAvarice(PlayerEntity player) {
-        return AvariceComponent.KEY.get(player).isAvarice();
-    }
-
-    /**
-     * Checks if a given entity is Avarice.
-     * @param living The entity to check.
-     */
-    public static boolean isAvarice(LivingEntity living) {
-        return living instanceof PlayerEntity player && AvariceComponent.KEY.get(player).isAvarice();
+    public static boolean isAvarice(Entity entity) {
+        return entity instanceof PlayerEntity player && AvariceComponent.KEY.get(player).isAvarice();
     }
 
     /**
@@ -108,6 +97,10 @@ public class ModUtils {
         if (living.getServer() != null) {
             living.teleportTo(new TeleportTarget(getAsphodel(living.getServer()), pos, living.getVelocity(), living.getYaw(), living.getPitch(), TeleportTarget.NO_OP));
         }
+    }
+
+    public static boolean isFollyActive(World world) {
+        return world != null && AvariceEventComponent.KEY.get(world).getState();
     }
 
     /**

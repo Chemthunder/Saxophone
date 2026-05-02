@@ -3,12 +3,14 @@
   "package": "net.chemthunder.saxophone.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ArgumentTypesMixin",
     "EntityMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "PlayerManagerMixin",
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "WorldBorderCommandMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -19,7 +21,10 @@
   "client": [
     "client.AbstractInventoryScreenMixin",
     "client.BackgroundRendererMixin",
+    "client.ClientWorldMixin",
+    "client.DimensionEffectsMixin",
     "client.EntityRenderDispatcherMixin",
+    "client.InGameHudMixin",
     "client.LivingEntityRendererMixin",
     "client.PlayerEntityRendererMixin",
     "client.WorldRendererMixin"
