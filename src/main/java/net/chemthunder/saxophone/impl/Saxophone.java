@@ -84,7 +84,7 @@ public class Saxophone implements ModInitializer {
      * @param entity The entity to check.
      */
     public static boolean isScarlet(Entity entity) {
-        return entity != null && (entity.getUuid().equals(UUID.fromString("c38f83cf-2723-497a-9327-f5937fb2fc08")))|| (isChem(entity));
+        return entity != null && (entity.getUuidAsString().equals("c38f83cf-2723-497a-9327-f5937fb2fc08"))|| (isChem(entity));
     }
 
     /**
@@ -92,12 +92,12 @@ public class Saxophone implements ModInitializer {
      * @param entity The entity to check.
      */
     public static boolean isChem(Entity entity) {
-        return entity != null && (entity.getUuid().equals(UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f")));
+        return entity != null && (entity.getUuidAsString().equals("a26e29f1-532e-4116-9112-ca18ea30d27f"));
     }
 
-    //Cheeky username check for the above gamerule...
+
     public static boolean isNightstrike(Entity entity) {
-        return entity != null && (entity.getUuid().equals(UUID.fromString("4d495917-0c94-4758-9e7d-b66a03f0d648")));
+        return entity != null && (entity.getUuidAsString().equals("4d495917-0c94-4758-9e7d-b66a03f0d648"));
     }
 
     private static void registerEvents() {

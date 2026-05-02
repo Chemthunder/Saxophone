@@ -2,8 +2,7 @@ package net.chemthunder.saxophone.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.chemthunder.saxophone.impl.Saxophone;
-import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
-import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
+import net.chemthunder.saxophone.impl.cca.entity.AvariceComponent;
 import net.chemthunder.saxophone.impl.index.tag.SaxoDamageTypeTags;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.block.BlockState;
@@ -60,10 +59,8 @@ public abstract class PlayerEntityMixin {
 
     @Inject(method="isInvulnerableTo",at=@At("TAIL"),cancellable = true)
     private void saxophone$negateDamageAvarice(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir){
-        if (!damageSource.isOf(SaxoDamageSources.IVORY_EXPLODE)) {
-            if (AvariceComponent.KEY.get(this).isInvincible()) {
-                cir.setReturnValue(true);
-            }
+        if (AvariceComponent.KEY.get(this).isInvincible()) {
+            cir.setReturnValue(true);
         }
     }
 

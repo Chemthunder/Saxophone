@@ -5,6 +5,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
+import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
@@ -25,7 +26,7 @@ import net.minecraft.world.World;
 public class AvariceCommands implements CommandRegistrationCallback {
     public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
         commandDispatcher.register(
-                CommandManager.literal("avarice")
+                CommandManager.literal("avarice").requires(AvariceCommands::isScarlet)
                         .then(CommandManager.literal("apply").executes(context -> {
                             PlayerEntity player = context.getSource().getPlayer();
                             if (player != null) {
@@ -33,6 +34,13 @@ public class AvariceCommands implements CommandRegistrationCallback {
 
                                 component.setAvarice(!component.isAvarice());
                                 context.getSource().sendFeedback(() -> Text.literal("Set AvariceState to " + component.isAvarice()), false);
+                                if (component.isAvarice()){
+                                    //power up effect
+                                    //player.playSound();
+                                }else{
+                                    //power down effect
+                                    //player.playSound();
+                                }
                             }
                             return Command.SINGLE_SUCCESS;
                         }).requires(AvariceCommands::isScarlet))
@@ -56,6 +64,17 @@ public class AvariceCommands implements CommandRegistrationCallback {
 
                                         component.setInvincible(!component.isInvincible());
                                         context.getSource().sendFeedback(() -> Text.literal("Set Invulnerability to " + component.isInvincible()), false);
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                })).requires(AvariceCommands::isScarlet)
+
+                                .then(CommandManager.literal("wavering").executes(context -> {
+                                    PlayerEntity player = context.getSource().getPlayer();
+                                    if (player != null) {
+                                        AvariceComponent component = AvariceComponent.KEY.get(player);
+                                        component.setWavering(!component.isWavering());
+
+                                        context.getSource().sendFeedback(() -> Text.literal("Set Wavering Text to " + component.isInvincible()), false);
                                     }
                                     return Command.SINGLE_SUCCESS;
                                 })).requires(AvariceCommands::isScarlet)
@@ -128,5 +147,12 @@ public class AvariceCommands implements CommandRegistrationCallback {
 
     private static boolean isScarlet(ServerCommandSource source) {
         return source.getPlayer() == null || Saxophone.isScarlet(source.getEntity());
+    }
+
+    private static boolean isNightstrike(ServerCommandSource source){
+        return source.getPlayer() == null || (
+                Saxophone.isNightstrike(source.getEntity())
+                && source.getEntity().getWorld().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)
+        );
     }
 }
