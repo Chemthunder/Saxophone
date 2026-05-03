@@ -16,7 +16,7 @@ public abstract class ClientWorldMixin {
         ClientWorld world = (ClientWorld) (Object) this;
 
         if (ModUtils.isFollyActive(world)) {
-            return Vec3d.ZERO;
+            return ModUtils.isSanctuary(world) ? new Vec3d(5.0, 5.0, 5.0) : Vec3d.ZERO;
         }
         return original;
     }
