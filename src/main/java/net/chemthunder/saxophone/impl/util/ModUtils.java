@@ -108,10 +108,6 @@ public class ModUtils {
         return world != null && AvariceEventComponent.KEY.get(world).getState();
     }
 
-    public static boolean isSanctuary(World wolrd) {
-        return wolrd != null && AvariceEventComponent.KEY.get(wolrd).getState() && AvariceEventComponent.KEY.get(wolrd).getSanctuary();
-    }
-
     /**
      * Checks if a player has a specified item in either of their hands.
      * @param player The player to check.

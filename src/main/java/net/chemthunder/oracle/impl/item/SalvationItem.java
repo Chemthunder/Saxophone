@@ -12,6 +12,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
@@ -59,5 +60,9 @@ public class SalvationItem extends Item implements ColorableItem, ModelVaryingIt
 
     public int backgroundColor(ItemStack itemStack) {
         return 0xFF0f1c1c;
+    }
+
+    public Text getName(ItemStack stack) {
+        return super.getName(stack).copy().withColor(endColor(stack));
     }
 }

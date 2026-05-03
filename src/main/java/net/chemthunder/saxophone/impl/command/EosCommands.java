@@ -66,22 +66,6 @@ public class EosCommands implements CommandRegistrationCallback {
 
                                     return Command.SINGLE_SUCCESS;
                                 })).requires(EosCommands::isChem)
-
-                                .then(CommandManager.literal("authorizeDomainExpansion").executes(context -> {
-                                    World world = context.getSource().getWorld();
-
-                                    if (world != null) {
-                                        AvariceEventComponent component = AvariceEventComponent.KEY.get(world);
-
-                                        component.setCanUseDomainExpansion(!component.isCanUseDomainExpansion());
-
-                                        world.getPlayers().forEach(playerEntity -> {
-                                            playerEntity.sendMessage(Text.literal("aight gang scarlet can do shit now, stand by for domain expansion -modding chem"));
-                                        });
-                                    }
-
-                                    return Command.SINGLE_SUCCESS;
-                                })).requires(EosCommands::isChem)
                         ).requires(EosCommands::isChem)
 
                         .then(CommandManager.literal("state").executes(context -> {

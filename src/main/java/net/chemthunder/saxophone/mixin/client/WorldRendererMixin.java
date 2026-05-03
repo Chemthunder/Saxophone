@@ -64,17 +64,6 @@ public abstract class WorldRendererMixin {
     }
 
     @WrapOperation(
-            method = "renderSky",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/world/ClientWorld;getSkyColor(Lnet/minecraft/util/math/Vec3d;F)Lnet/minecraft/util/math/Vec3d;"
-            )
-    )
-    private Vec3d saxophone$sancSkyColor(ClientWorld instance, Vec3d cameraPos, float tickDelta, Operation<Vec3d> original) {
-        return ModUtils.isSanctuary(MinecraftClient.getInstance().world) ? new Vec3d(5.0, 5.0, 5.0) : original.call(instance, cameraPos, tickDelta);
-    }
-
-    @WrapOperation(
             method = "renderWorldBorder",
             at = @At(
                     value = "INVOKE",

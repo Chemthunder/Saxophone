@@ -23,7 +23,6 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
     private final World world;
 
     private boolean state = false;
-    private boolean sanctuary = false;
     private boolean shade = false;
 
     public static final double WORLD_BORDER_SIZE = 300;
@@ -44,7 +43,6 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
 
     public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
         this.state = nbtCompound.getBoolean("State");
-        this.sanctuary = nbtCompound.getBoolean("Sanctuary");
         this.shade = nbtCompound.getBoolean("Shade");
 
         this.savedBorderSize = nbtCompound.getDouble("SavedBorderSize");
@@ -56,7 +54,6 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
 
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
         nbtCompound.putBoolean("State", state);
-        nbtCompound.putBoolean("Sanctuary", sanctuary);
         nbtCompound.putBoolean("Shade", shade);
 
         nbtCompound.putDouble("SavedBorderSize", savedBorderSize);
@@ -73,15 +70,6 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
 
     public boolean getState() {
         return this.state;
-    }
-
-    public void setSanctuary(boolean bl) {
-        this.sanctuary = bl;
-        this.sync();
-    }
-
-    public boolean getSanctuary() {
-        return this.sanctuary;
     }
 
     public boolean getShade() {
@@ -103,7 +91,6 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
 
     public void beginEvent(PlayerEntity source) {
         this.state = true;
-        this.sanctuary = false;
         this.shade = false;
 
         WorldBorder border = this.world.getWorldBorder();
@@ -129,7 +116,6 @@ public class AvariceEventComponent implements AutoSyncedComponent, CommonTicking
 
     public void ceaseEvent() {
         this.state = false;
-        this.sanctuary = false;
         this.shade = false;
 
         WorldBorder border = this.world.getWorldBorder();

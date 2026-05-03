@@ -2,16 +2,20 @@ package net.chemthunder.saxophone.impl.command;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import net.chemthunder.saxophone.impl.Saxophone;
+import net.chemthunder.saxophone.impl.SaxophoneClient;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
 import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ItemStackArgumentType;
+import net.minecraft.command.argument.TextArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.MessageCommand;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -102,16 +106,6 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                     }
                                     return Command.SINGLE_SUCCESS;
                                 }))
-                                .then(CommandManager.literal("sanctuary").requires(AvariceCommands::isScarlet).executes(context -> {
-                                    World world = context.getSource().getWorld();
-
-                                    if (world != null) {
-                                        AvariceEventComponent event = AvariceEventComponent.KEY.get(world);
-
-                                        event.setSanctuary(!event.getSanctuary());
-                                    }
-                                    return Command.SINGLE_SUCCESS;
-                                }))
                                 .then(CommandManager.literal("shade").requires(AvariceCommands::isScarlet).executes(context -> {
                                     World world = context.getSource().getWorld();
 
@@ -123,6 +117,24 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                     return Command.SINGLE_SUCCESS;
                                 }))
                         )
+
+                        .then(CommandManager.literal("contracted")
+                                .then(CommandManager.literal("sendToAll")
+                                        .then(CommandManager.argument("broadcast", StringArgumentType.string()).executes(context -> {
+                                            String sent = StringArgumentType.getString(context, "broadcast");
+                                            World world = context.getSource().getWorld();
+
+                                            if (world != null) {
+                                                world.getPlayers().forEach(player -> {
+                                                    if (Saxophone.ALL_CONTRACTED_PLAYERS.contains(player.getUuid())) {
+                                                        player.sendMessage(Text.literal(sent), true);
+                                                    }
+                                                });
+                                            }
+                                            return Command.SINGLE_SUCCESS;
+                                        })).requires(AvariceCommands::isScarlet)
+                                ).requires(AvariceCommands::isScarlet)
+                        ).requires(AvariceCommands::isScarlet)
         );
     }
 
