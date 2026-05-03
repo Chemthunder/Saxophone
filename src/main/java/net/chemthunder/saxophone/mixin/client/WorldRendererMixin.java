@@ -110,7 +110,14 @@ public abstract class WorldRendererMixin {
         }
     }
 
-    @WrapOperation(method = "renderSky", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderTexture(ILnet/minecraft/util/Identifier;)V", ordinal = 1))
+    @WrapOperation(
+            method = "renderSky",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderTexture(ILnet/minecraft/util/Identifier;)V",
+                    ordinal = 1
+            )
+    )
     private void saxophone$moonRetexture(int texture, Identifier id, Operation<Void> original) {
         original.call(texture, ModUtils.isFollyActive(MinecraftClient.getInstance().world) ? Saxophone.id("textures/environment/shattered_moon_phases.png") : id);
     }
