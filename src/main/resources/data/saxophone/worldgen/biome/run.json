@@ -5,9 +5,9 @@
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
-    "fog_color": 526344,
+    "fog_color": 0,
     "water_color": 0,
-    "water_fog_color": 526344,
+    "water_fog_color": 0,
     "grass_color": 0
   },
   "spawners": {},

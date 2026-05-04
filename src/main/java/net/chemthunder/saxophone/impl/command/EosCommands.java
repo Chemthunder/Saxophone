@@ -5,7 +5,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.deity.EosComponent;
-import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
@@ -62,22 +61,6 @@ public class EosCommands implements CommandRegistrationCallback {
                                         });
 
                                         context.getSource().sendFeedback(() -> Text.literal("Successfully de-avariced all non-essential players."), true);
-                                    }
-
-                                    return Command.SINGLE_SUCCESS;
-                                })).requires(EosCommands::isChem)
-
-                                .then(CommandManager.literal("authorizeDomainExpansion").executes(context -> {
-                                    World world = context.getSource().getWorld();
-
-                                    if (world != null) {
-                                        AvariceEventComponent component = AvariceEventComponent.KEY.get(world);
-
-                                        component.setCanUseDomainExpansion(!component.isCanUseDomainExpansion());
-
-                                        world.getPlayers().forEach(playerEntity -> {
-                                            playerEntity.sendMessage(Text.literal("aight gang scarlet can do shit now, stand by for domain expansion -modding chem"));
-                                        });
                                     }
 
                                     return Command.SINGLE_SUCCESS;
