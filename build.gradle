@@ -1,12 +1,23 @@
 plugins {
 	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version "8.1.1"
+}
+configurations {
+    bonusLibs
 }
 
 version = project.mod_version
 group = project.maven_group
 
 repositories {
+
+    mavenCentral()
+    maven {
+        name = "Jitpack"
+        url = "https://jitpack.io"
+    }
+
     // Modrinth
     exclusiveContent {
         forRepository {
@@ -34,6 +45,12 @@ repositories {
 
     // MixinSquared
     maven { url "https://maven.bawnorton.com/releases" }
+
+    //Xaero's maven
+    maven {
+        url = "https://chocolateminecraft.com/maven"
+        name = "Xaero's Maven"
+    }
 }
 
 fabricApi {
@@ -68,6 +85,13 @@ dependencies {
 
     // trinkets
     modImplementation include("dev.emi:trinkets:${project.trinkets_version}")
+
+
+    //coordinate hiding, optional
+    modImplementation "xaero.minimap:xaerominimap-fabric-${minecraft_version}:+"
+    modImplementation include("xaero.lib:xaerolib-fabric-${minecraft_version}:+")
+
+    //bonusLibs "curse.maven:xaeros-minimap-263420:7598600"
 }
 
 processResources {
@@ -76,10 +100,14 @@ processResources {
 	filesMatching("fabric.mod.json") {
 		expand "version": inputs.properties.version
 	}
+
 }
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
+}
+shadowJar {
+    configurations = [project.configurations.shadow]
 }
 
 java {
@@ -94,10 +122,18 @@ java {
 
 jar {
 	inputs.property "projectName", project.name
+    /*from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }*/
+    /*def finalDest = mkdir "${buildDir}/resources/META-INF/jars"
+    copy {
+        from { configurations.bonusLibs }
+        into { finalDest }
+    }
 
 	from("LICENSE") {
 		rename { "${it}_${project.name}"}
-	}
+	}*/
 }
 
 // configure the maven publication

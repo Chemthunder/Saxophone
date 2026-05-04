@@ -1,6 +1,7 @@
 package net.chemthunder.saxophone.mixin.client;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;

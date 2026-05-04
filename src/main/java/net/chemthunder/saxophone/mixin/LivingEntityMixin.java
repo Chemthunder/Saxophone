@@ -168,4 +168,6 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
             }
         }
     }
+    //FabricLoader.getInstance().isModLoaded("xaerominimap");
+
 }

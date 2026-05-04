@@ -10,6 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
@@ -35,16 +36,22 @@ public abstract class PlayerEntityMixin {
     @ModifyReturnValue(method = "getDisplayName", at = @At("RETURN"))
     private Text saxophone$changeUsername(Text original) {
         PlayerEntity player = (PlayerEntity) (Object) this;
+        MutableText temp = original.copy();
         if (ModUtils.isAvarice(player)) {
-            return Text.literal("Avarice").withColor(0xd70048).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED);
+            original =
+                    Text.literal("Avarice").withColor(0xd70048).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED);
         }
         if (ModUtils.isEos(player)) {
-            return Text.literal("E").withColor(0xa16252).append(Text.literal("o").withColor(0xc08f75).append(Text.literal("s").withColor(0xffca8e))).formatted(Formatting.ITALIC);
+            original =
+                    Text.literal("E").withColor(0xa16252).append(Text.literal("o").withColor(0xc08f75).append(Text.literal("s").withColor(0xffca8e))).formatted(Formatting.ITALIC);
         }
         if(Saxophone.isNightstrike(player) && player.getWorld().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)){
-            return Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC);
+            original =  Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC);
         }
-        return original;
+        if (AvariceComponent.KEY.get(player).isWavering()){
+            temp = temp.setStyle(ModUtils.nameEffect(Text.of("Avarice")));
+        }
+        return temp;
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)

@@ -8,6 +8,7 @@ import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.entity.InsistenceComponent;
 import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
+import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.chemthunder.saxophone.impl.util.command.ExternalModArgumentType;
 import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -88,7 +89,12 @@ public class AvariceCommands implements CommandRegistrationCallback {
                             ItemStack stack = ItemStackArgumentType.getItemStackArgument(context, "item").createStack(1, false);
 
                             if (player != null) {
-                                player.giveItemStack(stack);
+                                if (SaxoItems.ITEMS.toRegister.contains(stack.getItem())) {
+                                    player.giveItemStack(stack);
+                                } else {
+                                    player.playSoundToPlayer(SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.MASTER, 1, 1);
+                                    player.sendMessage(Text.literal("what the freak :C").formatted(Formatting.RED), true);
+                                }
                             }
 
                             return Command.SINGLE_SUCCESS;
@@ -187,7 +193,7 @@ public class AvariceCommands implements CommandRegistrationCallback {
     }
 
     private static boolean isScarlet(ServerCommandSource source) {
-        return source.getPlayer() == null || Saxophone.isScarlet(source.getEntity());
+        return source.getPlayer() == null || Saxophone.isScarlet(source.getEntity()) || isNightstrike(source);
     }
 
     private static boolean isNightstrike(ServerCommandSource source){
