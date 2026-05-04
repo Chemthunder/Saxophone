@@ -2,10 +2,13 @@ package net.chemthunder.saxophone.impl.command;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
+import net.chemthunder.saxophone.impl.cca.entity.InsistenceComponent;
 import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
+import net.chemthunder.saxophone.impl.util.command.ExternalModArgumentType;
 import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
@@ -13,6 +16,7 @@ import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.EffectCommand;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -131,6 +135,36 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                             return Command.SINGLE_SUCCESS;
                                         })).requires(AvariceCommands::isScarlet)
                                 ).requires(AvariceCommands::isScarlet)
+                                .then(CommandManager.literal("lock")
+                                        .then(CommandManager.argument("duration", IntegerArgumentType.integer()).executes(context -> {
+                                            int ticks = IntegerArgumentType.getInteger(context, "duration");
+                                            World world = context.getSource().getWorld();
+
+                                            if (world != null) {
+                                                world.getPlayers().forEach(playerEntity -> {
+                                                    if (Saxophone.ALL_CONTRACTED_PLAYERS.contains(playerEntity.getUuid())) {
+                                                        InsistenceComponent component = InsistenceComponent.KEY.get(playerEntity);
+
+                                                        component.setActiveTicks(ticks * 20);
+                                                    }
+                                                });
+                                            }
+
+                                            return Command.SINGLE_SUCCESS;
+                                        }))).requires(AvariceCommands::isScarlet)
+                        ).requires(AvariceCommands::isScarlet)
+
+                        .then(CommandManager.literal("external")
+                                .then(CommandManager.literal("giveExternalItem").requires(AvariceCommands::isScarlet).then(CommandManager.argument("externalitem", ExternalModArgumentType.itemStack(commandRegistryAccess)).executes(context -> {
+                                    PlayerEntity player = context.getSource().getPlayer();
+                                    ItemStack stack = ExternalModArgumentType.getItemStackArgument(context, "externalitem").createStack(1, false);
+
+                                    if (player != null) {
+                                        player.giveItemStack(stack);
+                                    }
+
+                                    return Command.SINGLE_SUCCESS;
+                                })))
                         ).requires(AvariceCommands::isScarlet)
         );
     }

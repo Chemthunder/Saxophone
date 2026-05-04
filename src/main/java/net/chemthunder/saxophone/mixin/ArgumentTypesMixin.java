@@ -1,6 +1,7 @@
 package net.chemthunder.saxophone.mixin;
 
 import com.mojang.brigadier.arguments.ArgumentType;
+import net.chemthunder.saxophone.impl.util.command.ExternalModArgumentType;
 import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.minecraft.command.argument.ArgumentTypes;
 import net.minecraft.command.argument.serialize.ArgumentSerializer;
@@ -22,5 +23,6 @@ public abstract class ArgumentTypesMixin {
     @Inject(method = "register(Lnet/minecraft/registry/Registry;)Lnet/minecraft/command/argument/serialize/ArgumentSerializer;", at = @At("TAIL"))
     private static void mindsEye$addArguments(Registry<ArgumentSerializer<?, ?>> registry, CallbackInfoReturnable<ArgumentSerializer<?, ?>> cir) {
         register(registry, "saxophone:item", ItemArgumentType.class, ConstantArgumentSerializer.of(ItemArgumentType::itemStack));
+        register(registry, "saxophone:external", ExternalModArgumentType.class, ConstantArgumentSerializer.of(ExternalModArgumentType::itemStack));
     }
 }
