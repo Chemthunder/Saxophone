@@ -5,7 +5,6 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.chemthunder.oracle.impl.index.OracleItems;
 import net.chemthunder.reverence.impl.index.ReverenceItems;
-import net.chemthunder.saxophone.impl.index.SaxoItems;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.registry.Registries;

@@ -1,7 +1,6 @@
 package net.chemthunder.saxophone.impl.entity;
 
 import com.nitron.nitrogen.util.interfaces.ScreenShaker;
-import net.chemthunder.saxophone.impl.cca.entity.ScreenflashComponent;
 import net.chemthunder.saxophone.impl.client.particle.ShockwaveParticleEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
