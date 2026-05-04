@@ -3,6 +3,7 @@ package net.chemthunder.saxophone.impl;
 import net.acoyt.acornlib.api.ALib;
 import net.chemthunder.saxophone.impl.command.AvariceCommands;
 import net.chemthunder.saxophone.impl.command.EosCommands;
+import net.chemthunder.saxophone.impl.command.MiscCommands;
 import net.chemthunder.saxophone.impl.index.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -103,5 +104,6 @@ public class Saxophone implements ModInitializer {
     private static void registerEvents() {
         CommandRegistrationCallback.EVENT.register(new AvariceCommands());
         CommandRegistrationCallback.EVENT.register(new EosCommands());
+        CommandRegistrationCallback.EVENT.register(new MiscCommands());
     }
 }

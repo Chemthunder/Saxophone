@@ -6,9 +6,12 @@ import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.deity.EosComponent;
 import net.chemthunder.saxophone.impl.util.ModUtils;
+import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -77,6 +80,17 @@ public class EosCommands implements CommandRegistrationCallback {
                             }
                             return Command.SINGLE_SUCCESS;
                         })).requires(EosCommands::isChem)
+
+                        .then(CommandManager.literal("give").requires(EosCommands::isChem).then(CommandManager.argument("item", ItemArgumentType.itemStack(commandRegistryAccess)).executes(context -> {
+                            PlayerEntity player = context.getSource().getPlayer();
+                            ItemStack stack = ItemStackArgumentType.getItemStackArgument(context, "item").createStack(1, false);
+
+                            if (player != null) {
+                                player.giveItemStack(stack);
+                            }
+
+                            return Command.SINGLE_SUCCESS;
+                        })).requires(EosCommands::isChem)).requires(EosCommands::isChem)
 
                         .then(CommandManager.literal("flight")
                                 .then(CommandManager.literal("toggle").executes(context -> {
