@@ -9,7 +9,6 @@ import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.entity.InsistenceComponent;
 import net.chemthunder.saxophone.impl.cca.world.AvariceEventComponent;
 import net.chemthunder.saxophone.impl.util.command.ExternalModArgumentType;
-import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
