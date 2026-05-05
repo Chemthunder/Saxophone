@@ -38,18 +38,30 @@ public abstract class PlayerEntityMixin {
         PlayerEntity player = (PlayerEntity) (Object) this;
         MutableText temp = original.copy();
         if (ModUtils.isAvarice(player)) {
-            original =
+            temp =
                     Text.literal("Avarice").withColor(0xd70048).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED);
-        }
-        if (ModUtils.isEos(player)) {
-            original =
+            if( AvariceComponent.KEY.get(player).isWavering()) {
+                temp = Text
+                        .literal("Avarice")
+                        .setStyle(ModUtils.nameEffect(Text.of("Avarice")))
+                        .withColor(0xd70048)
+                        .formatted(Formatting.ITALIC)
+                        .formatted(Formatting.OBFUSCATED);
+
+            }
+        } else if (ModUtils.isEos(player)) {
+            temp =
                     Text.literal("E").withColor(0xa16252).append(Text.literal("o").withColor(0xc08f75).append(Text.literal("s").withColor(0xffca8e))).formatted(Formatting.ITALIC);
-        }
-        if(Saxophone.isNightstrike(player) && player.getWorld().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)){
-            original =  Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC);
-        }
-        if (AvariceComponent.KEY.get(player).isWavering()){
-            temp = temp.setStyle(ModUtils.nameEffect(Text.of("Avarice")));
+        } if(Saxophone.isNightstrike(player) && player.getWorld().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)) {
+            temp = Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC);
+            if(AvariceComponent.KEY.get(player).isWavering()){
+                temp = Text
+                        .literal("The Reaper")
+                        .setStyle(ModUtils.nameEffect(Text.of("The Reaper")))
+                        .withColor(0x3ED6BA)
+                        .formatted(Formatting.ITALIC)
+                        .formatted(Formatting.OBFUSCATED);
+            }
         }
         return temp;
     }

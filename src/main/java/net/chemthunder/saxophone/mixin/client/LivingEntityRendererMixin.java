@@ -2,8 +2,11 @@ package net.chemthunder.saxophone.mixin.client;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.chemthunder.saxophone.impl.SaxophoneClient;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
+import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -14,10 +17,12 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * @author Chemthunder
@@ -52,8 +57,29 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
         Entity en = MinecraftClient.getInstance().getCameraEntity();
 
         if (en instanceof PlayerEntity player) {
-            return AvariceComponent.KEY.get(player).isInvisible() ? 0f : original;
+            return (AvariceComponent.KEY.get(player).isInvisible()||AvariceComponent.KEY.get(player).isTransparent()) ? 0f : original;
         }
         return original;
+    }
+
+    @Nullable
+    @Inject(method="getRenderLayer", at=@At("RETURN"),cancellable = true)
+    protected void getRenderLayerPatch(T entity, boolean showBody, boolean translucent, boolean showOutline, CallbackInfoReturnable<RenderLayer> cir
+    ){
+        RenderLayer b = cir.getReturnValue();
+        if(entity instanceof PlayerEntity p){
+            if(ModUtils.isAvarice(p)){
+                if(AvariceComponent.KEY.get(p).isTransparent()) {
+                    cir.setReturnValue(b == null ? null : SaxophoneClient.transientEffect.getRenderLayer(b));
+                }else{
+                    cir.setReturnValue(b == null ? null : b);
+                }
+            }else{
+                cir.setReturnValue(b == null ? null : b);
+            }
+        }else{
+            cir.setReturnValue(b == null ? null : b);
+        }
+
     }
 }

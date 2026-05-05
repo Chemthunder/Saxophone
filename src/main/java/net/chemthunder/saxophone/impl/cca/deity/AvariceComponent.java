@@ -42,7 +42,7 @@ public class AvariceComponent implements AutoSyncedComponent {
         nbtCompound.putBoolean("Invisible", invisible);
         nbtCompound.putBoolean("Invincible", invincible);
         nbtCompound.putBoolean("Transparent", transparent);
-        nbtCompound.putBoolean("Wavering",wavering);
+        nbtCompound.putBoolean("Wavering", wavering);
     }
 
     public boolean isAvarice() {

@@ -72,13 +72,24 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                     return Command.SINGLE_SUCCESS;
                                 })).requires(AvariceCommands::isScarlet)
 
+                                .then(CommandManager.literal("transparency").executes(context -> {
+                                    PlayerEntity player = context.getSource().getPlayer();
+                                    if (player != null) {
+                                        AvariceComponent component = AvariceComponent.KEY.get(player);
+
+                                        component.setTransparent(!component.isTransparent());
+                                        context.getSource().sendFeedback(() -> Text.literal("Set Transparency to " + component.isTransparent()), false);
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                })).requires(AvariceCommands::isScarlet)
+
                                 .then(CommandManager.literal("wavering").executes(context -> {
                                     PlayerEntity player = context.getSource().getPlayer();
                                     if (player != null) {
                                         AvariceComponent component = AvariceComponent.KEY.get(player);
                                         component.setWavering(!component.isWavering());
 
-                                        context.getSource().sendFeedback(() -> Text.literal("Set Wavering Text to " + component.isInvincible()), false);
+                                        context.getSource().sendFeedback(() -> Text.literal("Set Wavering Text to " + component.isWavering()), false);
                                     }
                                     return Command.SINGLE_SUCCESS;
                                 })).requires(AvariceCommands::isScarlet)
