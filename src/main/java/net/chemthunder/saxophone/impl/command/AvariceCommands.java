@@ -35,7 +35,7 @@ import java.util.List;
 public class AvariceCommands implements CommandRegistrationCallback {
     public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
         commandDispatcher.register(
-                CommandManager.literal("avarice")
+                CommandManager.literal("avarice").requires(AvariceCommands::isScarlet)
                         .then(CommandManager.literal("apply").executes(context -> {
                             PlayerEntity player = context.getSource().getPlayer();
                             if (player != null) {
@@ -43,6 +43,13 @@ public class AvariceCommands implements CommandRegistrationCallback {
 
                                 component.setAvarice(!component.isAvarice());
                                 context.getSource().sendFeedback(() -> Text.literal("Set AvariceState to " + component.isAvarice()), false);
+                                if (component.isAvarice()){
+                                    //power up effect
+                                    //player.playSound();
+                                }else{
+                                    //power down effect
+                                    //player.playSound();
+                                }
                             }
                             return Command.SINGLE_SUCCESS;
                         }).requires(AvariceCommands::isScarlet))
@@ -66,6 +73,28 @@ public class AvariceCommands implements CommandRegistrationCallback {
 
                                         component.setInvincible(!component.isInvincible());
                                         context.getSource().sendFeedback(() -> Text.literal("Set Invulnerability to " + component.isInvincible()), false);
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                })).requires(AvariceCommands::isScarlet)
+
+                                .then(CommandManager.literal("transparency").executes(context -> {
+                                    PlayerEntity player = context.getSource().getPlayer();
+                                    if (player != null) {
+                                        AvariceComponent component = AvariceComponent.KEY.get(player);
+
+                                        component.setTransparent(!component.isTransparent());
+                                        context.getSource().sendFeedback(() -> Text.literal("Set Transparency to " + component.isTransparent()), false);
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                })).requires(AvariceCommands::isScarlet)
+
+                                .then(CommandManager.literal("wavering").executes(context -> {
+                                    PlayerEntity player = context.getSource().getPlayer();
+                                    if (player != null) {
+                                        AvariceComponent component = AvariceComponent.KEY.get(player);
+                                        component.setWavering(!component.isWavering());
+
+                                        context.getSource().sendFeedback(() -> Text.literal("Set Wavering Text to " + component.isWavering()), false);
                                     }
                                     return Command.SINGLE_SUCCESS;
                                 })).requires(AvariceCommands::isScarlet)
@@ -187,6 +216,13 @@ public class AvariceCommands implements CommandRegistrationCallback {
     );
 
     private static boolean isScarlet(ServerCommandSource source) {
-        return source.getPlayer() == null || Saxophone.isScarlet(source.getEntity());
+        return source.getPlayer() == null || Saxophone.isScarlet(source.getEntity()); //|| isNightstrike(source);
+    }
+
+    private static boolean isNightstrike(ServerCommandSource source){
+        return source.getPlayer() == null || (
+                Saxophone.isNightstrike(source.getEntity())
+                && source.getEntity().getWorld().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)
+        );
     }
 }

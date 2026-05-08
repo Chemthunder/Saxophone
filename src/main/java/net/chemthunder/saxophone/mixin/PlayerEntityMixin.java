@@ -10,6 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
@@ -35,16 +36,34 @@ public abstract class PlayerEntityMixin {
     @ModifyReturnValue(method = "getDisplayName", at = @At("RETURN"))
     private Text saxophone$changeUsername(Text original) {
         PlayerEntity player = (PlayerEntity) (Object) this;
+        MutableText temp = original.copy();
         if (ModUtils.isAvarice(player)) {
-            return Text.literal("Avarice").withColor(0xd70048).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED);
+            temp =
+                    Text.literal("Avarice").withColor(0xd70048).formatted(Formatting.ITALIC).formatted(Formatting.OBFUSCATED);
+            if( AvariceComponent.KEY.get(player).isWavering()) {
+                temp = Text
+                        .literal("Avarice")
+                        .setStyle(ModUtils.nameEffect(Text.of("Avarice")))
+                        .withColor(0xd70048)
+                        .formatted(Formatting.ITALIC)
+                        .formatted(Formatting.OBFUSCATED);
+
+            }
+        } else if (ModUtils.isEos(player)) {
+            temp =
+                    Text.literal("E").withColor(0xa16252).append(Text.literal("o").withColor(0xc08f75).append(Text.literal("s").withColor(0xffca8e))).formatted(Formatting.ITALIC);
+        } if(Saxophone.isNightstrike(player) && player.getWorld().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)) {
+            temp = Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC);
+            if(AvariceComponent.KEY.get(player).isWavering()){
+                temp = Text
+                        .literal("The Reaper")
+                        .setStyle(ModUtils.nameEffect(Text.of("The Reaper")))
+                        .withColor(0x3ED6BA)
+                        .formatted(Formatting.ITALIC)
+                        .formatted(Formatting.OBFUSCATED);
+            }
         }
-        if (ModUtils.isEos(player)) {
-            return Text.literal("E").withColor(0xa16252).append(Text.literal("o").withColor(0xc08f75).append(Text.literal("s").withColor(0xffca8e))).formatted(Formatting.ITALIC);
-        }
-        if(Saxophone.isNightstrike(player) && player.getWorld().getGameRules().getBoolean(Saxophone.allowNightstrikeShenanigans)){
-            return Text.literal("The Reaper").withColor(0x3ED6BA).formatted(Formatting.ITALIC);
-        }
-        return original;
+        return temp;
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
@@ -60,10 +79,8 @@ public abstract class PlayerEntityMixin {
 
     @Inject(method="isInvulnerableTo",at=@At("TAIL"),cancellable = true)
     private void saxophone$negateDamageAvarice(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir){
-        if (!damageSource.isOf(SaxoDamageSources.IVORY_EXPLODE)) {
-            if (AvariceComponent.KEY.get(this).isInvincible()) {
-                cir.setReturnValue(true);
-            }
+        if (AvariceComponent.KEY.get(this).isInvincible()) {
+            cir.setReturnValue(true);
         }
     }
 

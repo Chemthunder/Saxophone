@@ -19,6 +19,7 @@ public class AvariceComponent implements AutoSyncedComponent {
     private boolean invisible = false;
     private boolean invincible = false;
     private boolean transparent = false;
+    private boolean wavering = false;
 
     public AvariceComponent(PlayerEntity player) {
         this.player = player;
@@ -33,6 +34,7 @@ public class AvariceComponent implements AutoSyncedComponent {
         this.invisible = nbtCompound.getBoolean("Invisible");
         this.invincible = nbtCompound.getBoolean("Invincible");
         this.transparent = nbtCompound.getBoolean("Transparent");
+        this.wavering = nbtCompound.getBoolean("Wavering");
     }
 
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
@@ -40,6 +42,7 @@ public class AvariceComponent implements AutoSyncedComponent {
         nbtCompound.putBoolean("Invisible", invisible);
         nbtCompound.putBoolean("Invincible", invincible);
         nbtCompound.putBoolean("Transparent", transparent);
+        nbtCompound.putBoolean("Wavering", wavering);
     }
 
     public boolean isAvarice() {
@@ -52,7 +55,7 @@ public class AvariceComponent implements AutoSyncedComponent {
     }
 
     public boolean isInvisible() {
-        return this.invisible;
+        return this.invisible && this.avarice;
     }
 
     public void setInvisible(boolean bl) {
@@ -61,16 +64,24 @@ public class AvariceComponent implements AutoSyncedComponent {
     }
 
     public boolean isInvincible() {
-        return this.invincible;
+        return this.invincible && this.avarice;
     }
 
     public void setInvincible(boolean bl) {
         this.invincible = bl;
         this.sync();
     }
+    public boolean isWavering() {
+        return this.wavering && this.avarice;
+    }
+
+    public void setWavering(boolean bl) {
+        this.wavering = bl;
+        this.sync();
+    }
 
     public boolean isTransparent() {
-        return this.transparent;
+        return this.transparent && this.avarice;
     }
 
     public void setTransparent(boolean bl) {
