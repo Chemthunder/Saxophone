@@ -22,7 +22,7 @@ public abstract class EntityRenderDispatcherMixin {
             at=@At("HEAD"),
             cancellable = true
     )
-    private static void suspendHitbox(MatrixStack matrices, VertexConsumer vertices, Entity entity, float tickDelta, float red, float green, float blue, CallbackInfo ci){
+    private static void saxophone$suspendHitbox(MatrixStack matrices, VertexConsumer vertices, Entity entity, float tickDelta, float red, float green, float blue, CallbackInfo ci){
         if (entity instanceof PlayerEntity player) {
             AvariceComponent component = AvariceComponent.KEY.get(player);
             if (component.isInvisible()) {

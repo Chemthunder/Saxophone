@@ -11,7 +11,8 @@
     "PlayerEntityMixin",
     "PlayerManagerMixin",
     "ServerPlayerEntityMixin",
-    "WorldBorderCommandMixin"
+    "WorldBorderCommandMixin",
+    "compat.xaerominimap.SyncedPlayerTrackerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

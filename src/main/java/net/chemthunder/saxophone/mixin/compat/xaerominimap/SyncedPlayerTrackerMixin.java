@@ -1,4 +1,4 @@
-package net.chemthunder.saxophone.mixin.compat.xaero;
+package net.chemthunder.saxophone.mixin.compat.xaerominimap;
 
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -12,14 +12,15 @@ import xaero.common.server.radar.tracker.SyncedTrackedPlayer;
 
 import java.util.UUID;
 
-
+/**
+ * @author JadedChara
+ */
 @Mixin(SyncedPlayerTracker.class)
 public abstract class SyncedPlayerTrackerMixin {
-
     @Shadow protected abstract void sendRemovePacket(ServerPlayerEntity player, UUID toRemove);
 
     @Inject(method="sendTrackedPlayerPacket",at=@At("HEAD"),cancellable = true)
-    public void suspendDeityTracking(ServerPlayerEntity player, SyncedTrackedPlayer tracked, CallbackInfo ci){
+    public void saxophone$suspendDeityTracking(ServerPlayerEntity player, SyncedTrackedPlayer tracked, CallbackInfo ci){
         if (ModUtils.isAvarice(player)){
             sendRemovePacket(player, player.getUuid());
             ci.cancel();

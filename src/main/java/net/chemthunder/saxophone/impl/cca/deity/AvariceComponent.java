@@ -71,6 +71,7 @@ public class AvariceComponent implements AutoSyncedComponent {
         this.invincible = bl;
         this.sync();
     }
+
     public boolean isWavering() {
         return this.wavering && this.avarice;
     }

@@ -174,6 +174,7 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                             return Command.SINGLE_SUCCESS;
                                         })).requires(AvariceCommands::isScarlet)
                                 ).requires(AvariceCommands::isScarlet)
+
                                 .then(CommandManager.literal("lock")
                                         .then(CommandManager.argument("duration", IntegerArgumentType.integer()).executes(context -> {
                                             int ticks = IntegerArgumentType.getInteger(context, "duration");

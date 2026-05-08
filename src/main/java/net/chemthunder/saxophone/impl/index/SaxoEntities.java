@@ -4,8 +4,12 @@ import net.acoyt.acornlib.api.registrants.EntityTypeRegistrant;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.client.render.entity.ForsakenCharterEntityRenderer;
 import net.chemthunder.saxophone.impl.client.render.entity.HopefulSkyEntityRenderer;
+import net.chemthunder.saxophone.impl.client.render.entity.TestBeamEntityRenderer;
 import net.chemthunder.saxophone.impl.entity.ForsakenCharterEntity;
 import net.chemthunder.saxophone.impl.entity.HopefulSkyEntity;
+import net.chemthunder.saxophone.impl.entity.TestBeamEntity;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -31,10 +35,19 @@ public interface SaxoEntities {
             ).dimensions(0.4f, 0.4f)
     );
 
+    EntityType<TestBeamEntity> TEST_BEAM = ENTITIES.register("test_beam",
+            EntityType.Builder.create(
+                    TestBeamEntity::new,
+                    SpawnGroup.MISC
+            ).dimensions(0.4f, 0.4f)
+    );
+
     static void init() {}
 
+    @Environment(EnvType.CLIENT)
     static void clientInit() {
         EntityRendererRegistry.register(FORSAKEN_CHARTER, ForsakenCharterEntityRenderer::new);
         EntityRendererRegistry.register(HOPEFUL_SKY, HopefulSkyEntityRenderer::new);
+        EntityRendererRegistry.register(TEST_BEAM, TestBeamEntityRenderer::new);
     }
 }

@@ -60,6 +60,4 @@ public class SaxophoneClient implements ClientModInitializer {
         );
         WindowTitleEvent.init();
     }
-
-
 }
