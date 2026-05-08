@@ -18,6 +18,7 @@ public interface SaxoDamageSources {
     RegistryKey<DamageType> LIBERATE = register("liberate", 0.0f);
     RegistryKey<DamageType> AVARICES_WILL = register("avarices_will", 0.0f);
     RegistryKey<DamageType> IVORY_EXPLODE = register("ivory_explode", 99.9f);
+    RegistryKey<DamageType> CLEANSE = register("cleanse", 0.0f);
 
     private static RegistryKey<DamageType> register(String name, float exhaustion) {
         RegistryKey<DamageType> key = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Saxophone.id(name));

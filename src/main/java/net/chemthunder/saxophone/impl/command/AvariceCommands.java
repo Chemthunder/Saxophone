@@ -4,6 +4,8 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import net.chemthunder.oracle.impl.index.OracleItems;
+import net.chemthunder.reverence.impl.index.ReverenceItems;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.entity.InsistenceComponent;
@@ -15,6 +17,7 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -23,6 +26,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 /**
  * @author Chemthunder
@@ -165,7 +170,9 @@ public class AvariceCommands implements CommandRegistrationCallback {
                                     ItemStack stack = ExternalModArgumentType.getItemStackArgument(context, "externalitem").createStack(1, false);
 
                                     if (player != null) {
-                                        player.giveItemStack(stack);
+                                        if (EXTERNAL_ITEMS.contains(stack.getItem())) {
+                                            player.giveItemStack(stack);
+                                        }
                                     }
 
                                     return Command.SINGLE_SUCCESS;
@@ -173,6 +180,11 @@ public class AvariceCommands implements CommandRegistrationCallback {
                         ).requires(AvariceCommands::isScarlet)
         );
     }
+
+    private static List<Item> EXTERNAL_ITEMS = List.of(
+            OracleItems.SALVATION,
+            ReverenceItems.EMPTINESS
+    );
 
     private static boolean isScarlet(ServerCommandSource source) {
         return source.getPlayer() == null || Saxophone.isScarlet(source.getEntity());

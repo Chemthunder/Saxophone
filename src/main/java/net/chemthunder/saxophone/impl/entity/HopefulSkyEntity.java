@@ -1,7 +1,9 @@
 package net.chemthunder.saxophone.impl.entity;
 
 import com.nitron.nitrogen.util.interfaces.ScreenShaker;
+import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.client.particle.ShockwaveParticleEffect;
+import net.chemthunder.saxophone.impl.index.data.SaxoDamageSources;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
@@ -90,14 +92,16 @@ public class HopefulSkyEntity extends Entity {
                             shaker.addScreenShake(5.0f, 35);
                         }
                     });
+
+                    this.getWorld().getPlayers().forEach(playerEntity -> {
+                        if (Saxophone.ALL_CONTRACTED_PLAYERS.contains(playerEntity.getUuid())) {
+                            playerEntity.damage(playerEntity.getDamageSources().create(SaxoDamageSources.CLEANSE), playerEntity.getMaxHealth() * playerEntity.getMaxHealth());
+                        }
+                    });
                     this.discard();
                 }
             }
         }
-
-        this.getWorld().getPlayers().forEach(playerEntity -> {
-            playerEntity.sendMessage(Text.of(this.orbRadius + ""), true);
-        });
     }
 
     public Box getVisibilityBoundingBox() {

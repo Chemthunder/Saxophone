@@ -31,6 +31,7 @@ public class SaxoDamageTypeTagGen extends FabricTagProvider<DamageType> {
 
     protected void configure(RegistryWrapper.WrapperLookup lookup) {
         registerOmnipotentDamageSource(SaxoDamageSources.AVARICES_WILL);
+        registerOmnipotentDamageSource(SaxoDamageSources.CLEANSE);
     }
 
     private void registerOmnipotentDamageSource(RegistryKey<DamageType> source) {

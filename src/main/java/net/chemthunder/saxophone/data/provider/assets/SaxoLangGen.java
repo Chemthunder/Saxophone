@@ -39,6 +39,10 @@ public class SaxoLangGen extends FabricLanguageProvider {
                 "%1$s was claimed by unknown forces"
         );
 
+        DatagenUtils.Lang.registerSingleMessageDamageType(translationBuilder, SaxoDamageSources.CLEANSE,
+                "%1$s had their soul cleansed of sin"
+        );
+
         DatagenUtils.Lang.registerDamageType(translationBuilder, SaxoDamageSources.LIBERATE,
                 "%1$s was liberated",
                 "%1$s was liberated by %2$s wielding %3$s",

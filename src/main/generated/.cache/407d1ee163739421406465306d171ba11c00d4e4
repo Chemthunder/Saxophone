@@ -1,6 +1,6 @@
-// 1.21.1	2026-04-21T21:30:51.8246971	Saxophone/Tags for minecraft:damage_type
-bfc71891ca6955eb551143c901fb8c69ebc29c6b data\minecraft\tags\damage_type\bypasses_enchantments.json
-bfc71891ca6955eb551143c901fb8c69ebc29c6b data\minecraft\tags\damage_type\bypasses_invulnerability.json
-bfc71891ca6955eb551143c901fb8c69ebc29c6b data\minecraft\tags\damage_type\bypasses_shield.json
-bfc71891ca6955eb551143c901fb8c69ebc29c6b data\minecraft\tags\damage_type\bypasses_armor.json
-bfc71891ca6955eb551143c901fb8c69ebc29c6b data\minecraft\tags\damage_type\bypasses_effects.json
+// 1.21.1	2026-05-07T20:39:37.0179198	Saxophone/Tags for minecraft:damage_type
+00f8702bd3b1c381ef494e3126c5b8f5a44b9c5a data\minecraft\tags\damage_type\bypasses_invulnerability.json
+00f8702bd3b1c381ef494e3126c5b8f5a44b9c5a data\minecraft\tags\damage_type\bypasses_armor.json
+00f8702bd3b1c381ef494e3126c5b8f5a44b9c5a data\minecraft\tags\damage_type\bypasses_shield.json
+00f8702bd3b1c381ef494e3126c5b8f5a44b9c5a data\minecraft\tags\damage_type\bypasses_effects.json
+00f8702bd3b1c381ef494e3126c5b8f5a44b9c5a data\minecraft\tags\damage_type\bypasses_enchantments.json

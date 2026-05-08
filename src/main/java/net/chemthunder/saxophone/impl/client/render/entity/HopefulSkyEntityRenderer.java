@@ -22,7 +22,7 @@ public class HopefulSkyEntityRenderer extends EntityRenderer<HopefulSkyEntity> {
         matrices.translate(-entity.getX(), -entity.getY(), -entity.getZ());
         RenderUtils.renderTexturedSphere(
                 matrices,
-                vertexConsumers.getBuffer(RenderLayer.getEntitySolid(Saxophone.id("textures/render/orb.png"))),
+                vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(Saxophone.id("textures/render/orb.png"))),
                 entity.getBlockPos(),
                 entity.getFinalized() ? 43 : entity.getOrbRadius() - 1,
                 entity.getOrbQuality(),

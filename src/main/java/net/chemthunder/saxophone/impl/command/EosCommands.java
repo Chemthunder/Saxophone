@@ -5,6 +5,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.chemthunder.saxophone.impl.Saxophone;
 import net.chemthunder.saxophone.impl.cca.deity.AvariceComponent;
 import net.chemthunder.saxophone.impl.cca.deity.EosComponent;
+import net.chemthunder.saxophone.impl.entity.HopefulSkyEntity;
+import net.chemthunder.saxophone.impl.index.SaxoEntities;
 import net.chemthunder.saxophone.impl.util.ModUtils;
 import net.chemthunder.saxophone.impl.util.command.ItemArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -114,10 +116,27 @@ public class EosCommands implements CommandRegistrationCallback {
                                     return Command.SINGLE_SUCCESS;
                                 }).requires(EosCommands::isChem))
                         ).requires(EosCommands::isChem)
+
+                        .then(CommandManager.literal("cleanse").executes(context -> {
+                            World world = context.getSource().getWorld();
+                            PlayerEntity player = context.getSource().getPlayerOrThrow();
+
+                            HopefulSkyEntity sky = new HopefulSkyEntity(SaxoEntities.HOPEFUL_SKY, world);
+
+                            sky.setPos(
+                                    player.getX(),
+                                    player.getY() + 80,
+                                    player.getZ()
+                            );
+
+                            world.spawnEntity(sky);
+
+                            return Command.SINGLE_SUCCESS;
+                        }))
         );
     }
 
-    private static boolean isChem(ServerCommandSource source) { // If command block, is ETHOS, or is opped
+    private static boolean isChem(ServerCommandSource source) {
         return source.getPlayer() == null || Saxophone.isChem(source.getEntity());
     }
 }
